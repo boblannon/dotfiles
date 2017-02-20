@@ -9,6 +9,7 @@ brew cask install java
 
 packages = (
 
+packages=(
   # utils
   bash-completion
   ack
@@ -65,3 +66,5 @@ for p in "${packages[@]}"
 do
   brew install $p
 done
+
+mkdir ~/.nvm
