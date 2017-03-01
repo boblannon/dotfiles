@@ -82,9 +82,10 @@ unset GEM_HOME
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-## mapbox
-source "$(npm root -g)/mbxcli/mapbox.sh"
-
 ## nvm
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
+
+## mapbox
+source "$(npm root -g)/mbxcli/mapbox.sh"
+
