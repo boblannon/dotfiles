@@ -7,5 +7,6 @@ export PATH=/usr/local/bin:$PATH
 test -f ~/.bashrc && source ~/.bashrc
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f ~/.bash_secrets ] && source ~/.bash_secrets 
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

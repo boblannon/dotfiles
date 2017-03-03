@@ -15,6 +15,7 @@ alias gap='git add -p'
 alias gcm='git commit -m'
 alias gb='git checkout -b '
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gc='git checkout '
 
 alias git_statuses='for dir in $(find -L . -type d -d 1); do cd $dir; curr_branch=`git branch | grep "*"`; echo "${dir} ${curr_branch}"; cd ..; done;'
