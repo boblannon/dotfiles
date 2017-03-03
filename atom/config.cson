@@ -1,0 +1,98 @@
+"*":
+  "activate-power-mode":
+    autoToggle: false
+  "autocomplete-plus":
+    fileBlacklist: [
+      "*.md"
+      "*.txt"
+    ]
+    scopeBlacklist: [
+      ".source.json .property"
+    ]
+  "autocomplete-python": {}
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "vim-mode"
+      "json-schema"
+      "language-markdown"
+    ]
+    ignoredNames: [
+      "*.pyc"
+      "*.pyo"
+    ]
+    projectHome: "/Users/bob/dev"
+    telemetryConsent: "no"
+    themes: [
+      "solarized-seti-ui"
+      "solarized-dark-syntax"
+    ]
+    useCustomTitleBar: true
+  editor:
+    fontFamily: "inconsolata"
+    fontSize: 16
+    invisibles: {}
+    showInvisibles: true
+    softWrapAtPreferredLineLength: true
+    tabLength: 4
+    tabType: "soft"
+  "exception-reporting":
+    userId: "0af1b49f-1954-0bc9-0d56-42322127faf8"
+  "git-history": {}
+  "git-plus": {}
+  linter:
+    showErrorPanel: false
+  "linter-flake8":
+    executablePath: "/usr/local/bin/flake8"
+    ignoreErrorCodes: [
+      "E501"
+    ]
+  "linter-pylama":
+    usePep257: false
+  "markdown-pdf":
+    orientation: "landscape"
+  "markdown-preview":
+    useGitHubStyle: true
+  "markdown-preview-plus":
+    enableLatexRenderingByDefault: true
+    enablePandoc: true
+    pandocMarkdownFlavor: "markdown_github"
+    useGitHubStyle: true
+  "markdown-themeable-pdf":
+    enableBreaks: true
+    enableCustomFooter: false
+    enableCustomHeader: false
+    enableLinkify: true
+    exportFileType: "html"
+    format: "Letter"
+    orientation: "landscape"
+  "markdown-writer":
+    fileExtension: ".md"
+  minimap:
+    plugins:
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      "minimap-autohide": true
+      "minimap-autohideDecorationsZIndex": 0
+      "minimap-hide": true
+      "minimap-hideDecorationsZIndex": 0
+      selection: true
+      selectionDecorationsZIndex: 0
+  pandoc: {}
+  "save-session":
+    dataSaveFolder: "/Users/bob/.atom/packages/save-session/projects"
+  "tidy-markdown":
+    runOnSave: false
+  "tree-view":
+    hideIgnoredNames: true
+  "vim-mode": {}
+  welcome:
+    showOnStartup: false
+".md.text":
+  editor:
+    showIndentGuide: false
+    showInvisibles: false
+    softWrap: false
+    softWrapAtPreferredLineLength: false
