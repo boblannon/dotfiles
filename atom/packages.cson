@@ -62,7 +62,7 @@ packages: [
   "table-editor"
   "tidy-markdown"
   "tree-view-git-status"
-  "vim-mode"
+  "vim-mode-plus"
   "wombat-dark-syntax"
   "xml-tools"
 ]

@@ -9,11 +9,11 @@
     scopeBlacklist: [
       ".source.json .property"
     ]
-  "autocomplete-python": {}
+  "autocomplete-python":
+    useKite: false
   core:
     audioBeep: false
     disabledPackages: [
-      "vim-mode"
       "json-schema"
       "language-markdown"
     ]
@@ -88,6 +88,8 @@
   "tree-view":
     hideIgnoredNames: true
   "vim-mode": {}
+  "vim-mode-plus":
+    useClipboardAsDefaultRegister: true
   welcome:
     showOnStartup: false
 ".md.text":
