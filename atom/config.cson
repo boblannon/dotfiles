@@ -16,6 +16,7 @@
     disabledPackages: [
       "json-schema"
       "language-markdown"
+      "activate-power-mode"
     ]
     ignoredNames: [
       "*.pyc"
@@ -30,7 +31,6 @@
     useCustomTitleBar: true
   editor:
     fontFamily: "inconsolata"
-    fontSize: 16
     invisibles: {}
     showInvisibles: true
     softWrapAtPreferredLineLength: true
@@ -80,6 +80,10 @@
       "minimap-hideDecorationsZIndex": 0
       selection: true
       selectionDecorationsZIndex: 0
+  "minimap-git-diff": {}
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
   pandoc: {}
   "save-session":
     dataSaveFolder: "/Users/bob/.atom/packages/save-session/projects"
@@ -89,6 +93,7 @@
     hideIgnoredNames: true
   "vim-mode": {}
   "vim-mode-plus":
+    highlightSearch: true
     useClipboardAsDefaultRegister: true
   welcome:
     showOnStartup: false

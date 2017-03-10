@@ -30,6 +30,7 @@ packages: [
   "linter-docker"
   "linter-flake8"
   "linter-jsonlint"
+  "linter-shellcheck"
   "markdown-pdf"
   "markdown-preview-plus"
   "markdown-themeable-pdf"
