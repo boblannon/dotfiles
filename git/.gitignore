@@ -27,3 +27,7 @@ Temporary Items
 
 # node
 node_modules
+
+# rvm
+.ruby-version
+.ruby-gemset
