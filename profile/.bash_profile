@@ -1,5 +1,8 @@
+# Set colors to match iTerm2 Terminal Colors
+export TERM=xterm-256color
+
 # Set architecture flags
-#export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 # Ensure user-installed binaries take precedence
 export PATH=/usr/local/bin:$PATH
 
