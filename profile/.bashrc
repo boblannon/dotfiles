@@ -96,3 +96,7 @@ export NVM_DIR="$HOME/.nvm"
 ## mapbox
 source "$(npm root -g)/mbxcli/mapbox.sh"
 
+## ack colorizing
+ack_color() {
+    ack --passthru --color-match=red "$1"
+}
