@@ -217,5 +217,8 @@ map ,o o<Esc>
 map ,O O<Esc>
 map ,p <Esc>:set paste!<CR>
 
+" send current selection to black hole and paste
+vmap r "_dP
+
 set backupdir=~/.vimbackup
 set directory=~/.vimswap
