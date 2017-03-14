@@ -97,6 +97,8 @@
     useClipboardAsDefaultRegister: true
   welcome:
     showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
 ".md.text":
   editor:
     showIndentGuide: false
