@@ -34,7 +34,7 @@ if [ "$(uname)" == "Darwin" ]; then
         source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
     fi
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    GIT_PROMPT_ONLY_IN_REPO=1
+    # GIT_PROMPT_ONLY_IN_REPO=1
     source ~/.bash-git-prompt/gitprompt.sh
 #elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Hopefully we never get here

@@ -65,8 +65,8 @@ filetype indent plugin on
 
 " Enable syntax highlighting
 syntax enable
-set background=dark
-colorscheme solarized
+"set background=light
+"colorscheme solarized
 
 "------------------------------------------------------------
 " Must have options {{{1
