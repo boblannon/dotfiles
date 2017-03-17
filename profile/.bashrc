@@ -101,11 +101,15 @@ unset GEM_HOME
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 ## nvm
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+if [ -f /usr/local/opt/nvm/nvm.sh ]; then
+    export NVM_DIR="$HOME/.nvm"
+    . "/usr/local/opt/nvm/nvm.sh"
+fi
 
 ## mapbox
-source "$(npm root -g)/mbxcli/mapbox.sh"
+if [ -f "$(npm root -g)/mbxcli/mapbox.sh" ]; then
+    source "$(npm root -g)/mbxcli/mapbox.sh"
+fi
 
 ## ack colorizing
 ack_color() {
