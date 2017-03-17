@@ -21,15 +21,23 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+if [ "$(uname)" == "Darwin" ]; then
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+      . $(brew --prefix)/etc/bash_completion
+    fi
 fi
-
 
 ## bash-git-prompt
 GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+if [ "$(uname)" == "Darwin" ]; then
+    if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+        source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+    fi
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source ~/.bash-git-prompt/gitprompt.sh
+#elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Hopefully we never get here
 fi
 
 ## rbenv
@@ -49,12 +57,15 @@ gpip3(){
 }
 
 ## virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/dev
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/dev
+    source /usr/local/bin/virtualenvwrapper.sh
 
-# mkvirtualenv with py3
-alias mkvirtualenv3='mkvirtualenv --python=$(which python3)'
+    # mkvirtualenv with py3
+    alias mkvirtualenv3='mkvirtualenv --python=$(which python3)'
+fi
+
 
 ## history
 # Key bindings, up/down arrow searches through history
