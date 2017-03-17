@@ -1,6 +1,9 @@
 "*":
   "activate-power-mode":
     autoToggle: false
+  "atom-beautify":
+    general:
+      _analyticsUserId: "e88713a8-9c71-4fb8-afc1-0e5d2cbda19c"
   "autocomplete-plus":
     fileBlacklist: [
       "*.md"
