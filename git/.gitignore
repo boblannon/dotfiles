@@ -5,7 +5,6 @@
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -31,3 +30,6 @@ node_modules
 # rvm
 .ruby-version
 .ruby-gemset
+
+# python
+env
