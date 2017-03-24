@@ -23,6 +23,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 "Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'alfredodeza/pytest.vim'
@@ -222,3 +223,14 @@ vmap r "_dP
 
 set backupdir=~/.vimbackup
 set directory=~/.vimswap
+
+
+"------------------------------------------------------------
+" NERDtree
+"
+" open if no file specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" toggle with \
+map <C-\> :NERDTreeToggle<CR>
