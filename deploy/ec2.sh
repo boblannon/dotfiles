@@ -1,7 +1,8 @@
 #! /bin/bash
 
 mkdir $HOME/cfg
-git clone https://${MOREC2_GITHUB_TOKEN}/boblannon/dotfiles $HOME/cfg/dotfiles
+# This would be hard to do, right?
+#git clone https://${MOREC2_GITHUB_TOKEN}/boblannon/dotfiles $HOME/cfg/dotfiles
 git clone https://github.com/magicmonty/bash-git-prompt.git $HOME/.bash-git-prompt --depth=1
 
 if [ -f $HOME/.bashrc ] then
