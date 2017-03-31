@@ -71,10 +71,12 @@ fi
 
 ## history
 # Key bindings, up/down arrow searches through history
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\eOA": history-search-backward'
-bind '"\eOB": history-search-forward'
+if [ -t 1 ]; then
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+    bind '"\eOA": history-search-backward'
+    bind '"\eOB": history-search-forward'
+fi
 
 ## editor
 export EDITOR="vim"
