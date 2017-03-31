@@ -20,6 +20,7 @@ Plugin 'VundleVim/Vundle.vim'
 " original repos on github
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 "Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/syntastic'
