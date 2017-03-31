@@ -40,3 +40,8 @@ move_to_old $HOME/.vimrc
 ln -s $HOME/cfg/dotfiles/vim/.vimrc $HOME/.vimrc
 
 vim +PluginInstall +qall
+
+if [ -d $HOME/.vim/bundle/command-t ]; then
+    cd $HOME/.vim/bundle/command-t/
+    rake make
+fi
