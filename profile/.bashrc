@@ -1,7 +1,9 @@
+export PROMPT_COMMAND=""
+
 ## add my own scripts dir
 export PATH="$PATH:$HOME/scripts"
 
-## custom tab title
+### custom tab title
 function tabtitle(){
     REPO_NAME=`git rev-parse --show-toplevel 2> /dev/null | awk -F'/' '{print $NF}'`;
     if [ -z "$REPO_NAME" ]

@@ -66,7 +66,7 @@ filetype indent plugin on
 
 " Enable syntax highlighting
 syntax enable
-"set background=light
+set background=light
 "colorscheme solarized
 
 "------------------------------------------------------------
@@ -231,6 +231,15 @@ set directory=~/.vimswap
 " open if no file specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeShowHidden=1
 
 " toggle with \
 map <C-\> :NERDTreeToggle<CR>
+
+"------------------------------------------------------------
+" CommandT
+"
+" wildcard ignore
+let g:CommandTWildIgnore="*/node_modules,*/env,*/.git"
+
+let g:CommandTAlwaysShowDotFiles=1
