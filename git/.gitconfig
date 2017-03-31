@@ -6,3 +6,5 @@
 	smudge = cat
 [core]
 	excludesfile = /Users/bob/.gitignore
+[push]
+	default = simple
