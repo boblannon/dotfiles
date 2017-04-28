@@ -120,6 +120,9 @@ set nomodeline
 " which are considered to add usability. Which, if any, of these options to
 " use is very much a personal preference, but they are harmless.
 
+" add filename to statusline
+set statusline+=%f
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
