@@ -13,8 +13,21 @@ function tabtitle(){
         echo "[$REPO_NAME] "
     fi
 }
+#if [ $ITERM_SESSION_ID ]; then
+#    export PROMPT_COMMAND='echo -ne "\033];$(tabtitle)${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+#fi
+
+# Add command to PROMPT_COMMAND (runs before each command)
+# Makes sure the command is not already in PROMPT_COMMAND
+addToPromptCommand() {
+  if [[ ":$PROMPT_COMMAND:" != *":$1:"* ]]; then
+    PROMPT_COMMAND="${PROMPT_COMMAND:+"$PROMPT_COMMAND:"}$1"
+  fi
+}
+
+# Set iTerm title to show current directory
 if [ $ITERM_SESSION_ID ]; then
-    export PROMPT_COMMAND='echo -ne "\033];$(tabtitle)${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+  addToPromptCommand 'echo -ne "\033];$(tabtitle)${PWD##*/}\007";'
 fi
 
 ## bash_aliases
