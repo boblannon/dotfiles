@@ -26,6 +26,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'alfredodeza/pytest.vim'
 Plugin 'corntrace/bufexplorer'
@@ -34,6 +35,7 @@ Plugin 'vim-scripts/VimClojure'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
+Plugin 'junegunn/vim-easy-align'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -105,6 +107,7 @@ set showcmd
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
+hi Search cterm=NONE ctermfg=white ctermbg=gray
 
 " Modelines have historically been a source of security vulnerabilities. As
 " such, it may be a good idea to disable them and use the securemodelines
@@ -230,6 +233,11 @@ set directory=~/.vimswap
 
 
 "------------------------------------------------------------
+" vim-markdown
+"
+autocmd FileType markdown map ,t :TableFormat<CR>
+
+"------------------------------------------------------------
 " NERDtree
 "
 " open if no file specified
@@ -264,4 +272,16 @@ let g:syntastic_sh_shellcheck_quiet_messages = {
             \ "!level": "errors",
             \ "type": "style" }
 
-map ,s :SyntasticToggleMode<CR>
+map ,m :SyntasticToggleMode<CR>
+
+"------------------------------------------------------------
+" EasyAlign 
+"
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga EasyAlign
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga :EasyAlign<CR>
+
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap ,<Bslash> :EasyAlign*<Bar><Enter>
