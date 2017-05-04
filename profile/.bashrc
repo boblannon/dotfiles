@@ -112,16 +112,17 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 
-### rvm
-unset GEM_HOME
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 ## nvm
 if [ -f /usr/local/opt/nvm/nvm.sh ]; then
     export NVM_DIR="$HOME/.nvm"
     . "/usr/local/opt/nvm/nvm.sh"
 fi
+
+### rvm
+unset GEM_HOME
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
 
 ## mapbox
 if [ -f "$(npm root -g)/mbxcli/mapbox.sh" ]; then
