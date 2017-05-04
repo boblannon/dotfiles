@@ -124,7 +124,7 @@ set nomodeline
 " use is very much a personal preference, but they are harmless.
 
 " add filename to statusline
-set statusline+=%f
+set statusline+=%m%f
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
