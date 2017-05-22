@@ -17,13 +17,29 @@
   core:
     audioBeep: false
     disabledPackages: [
-      "json-schema"
-      "language-markdown"
       "activate-power-mode"
+      "vim-mode-plus"
+      "Sublime-Style-Column-Selection"
+      "busy-signal"
+      "color-picker"
+      "dash"
+      "export-html"
+      "git-diff-details"
+      "git-plus"
+      "git-time-machine"
+      "git-history"
+      "json-path-finder"
+      "table-editor"
+      "linter-just-say-no"
+      "linter-write-good"
+      "linter-alex"
     ]
     ignoredNames: [
       "*.pyc"
       "*.pyo"
+    ]
+    packagesWithKeymapsDisabled: [
+      "split-diff"
     ]
     projectHome: "/Users/bob/dev"
     telemetryConsent: "no"
@@ -31,27 +47,35 @@
       "solarized-seti-ui"
       "solarized-dark-syntax"
     ]
-    useCustomTitleBar: true
+    titleBar: "custom"
+  "custom-title":
+    template: "<%= fileName %><% if (relativeFilePath) { %> - <%= relativeFilePath %><% } %>"
   editor:
     fontFamily: "inconsolata"
+    fontSize: 15
     invisibles: {}
     showInvisibles: true
-    softWrapAtPreferredLineLength: true
+    softWrap: true
     tabLength: 4
     tabType: "soft"
   "exception-reporting":
     userId: "0af1b49f-1954-0bc9-0d56-42322127faf8"
   "git-history": {}
   "git-plus": {}
-  linter:
-    showErrorPanel: false
+  linter: {}
   "linter-flake8":
     executablePath: "/usr/local/bin/flake8"
     ignoreErrorCodes: [
       "E501"
     ]
+  "linter-markdown":
+    presetRecommendedWithoutConfig: false
   "linter-pylama":
     usePep257: false
+  "linter-ui-default":
+    showPanel: true
+  "linter-write-good":
+    additionalArgs: "--no-passive"
   "markdown-pdf":
     orientation: "landscape"
   "markdown-preview":
@@ -71,6 +95,7 @@
     orientation: "landscape"
   "markdown-writer":
     fileExtension: ".md"
+    tableExtraPipes: true
   minimap:
     plugins:
       "git-diff": true
@@ -106,5 +131,6 @@
   editor:
     showIndentGuide: false
     showInvisibles: false
-    softWrap: false
+    softWrap: true
     softWrapAtPreferredLineLength: false
+    tabType: "soft"

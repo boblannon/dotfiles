@@ -37,6 +37,7 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'guns/xterm-color-table'
+Plugin 'Chiel92/vim-autoformat'
 
 " vim-scripts repos
 Plugin 'L9'
