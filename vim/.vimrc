@@ -36,6 +36,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'guns/xterm-color-table'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -285,3 +286,12 @@ nmap ga :EasyAlign<CR>
 
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap ,<Bslash> :EasyAlign*<Bar><Enter>
+
+"---------
+" vimdiff
+"
+" Better highlighting
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=157 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=217 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=229 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=45  gui=none guifg=bg guibg=Red
