@@ -30,6 +30,7 @@ ln -s $HOME/cfg/dotfiles/git/.gitignore $HOME/.gitignore
 git config --global user.email "bob.lannon@mapbox.com"
 git config --global user.name "Bob Lannon"
 git config --global push.default simple
+git config --global core.excludesfile $HOME/.gitignore
 
 [[ -d $HOME/.vim/bundle ]] || mkdir -p $HOME/.vim/bundle
 [[ -d $HOME/.vim/bundle/Vundle.vim ]] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
