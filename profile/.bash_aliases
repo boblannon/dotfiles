@@ -26,3 +26,6 @@ alias pyserve='python -m SimpleHTTPServer '
 alias openports='sudo lsof -i -n -P '
 
 alias seba='source ./env/bin/activate '
+
+# reattach-to-user-namespace to make terminal-notifier work within tmux
+alias terminal-notifier='reattach-to-user-namespace terminal-notifier'

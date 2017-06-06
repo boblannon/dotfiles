@@ -7,8 +7,6 @@ brew tap caskroom/cask
 brew cask install font-inconsolata
 brew cask install java
 
-packages = (
-
 packages=(
   # utils
   bash-completion
@@ -60,6 +58,12 @@ packages=(
   # git
   git
   bash-git-prompt
+
+  # terminal-notifier
+  terminal-notifier
+
+  # for tmux
+  reattach-to-user-namespace
 )
 
 for p in "${packages[@]}"
