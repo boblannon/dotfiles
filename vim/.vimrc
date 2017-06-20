@@ -101,6 +101,7 @@ set hidden
 " set autowriteall
 
 " Better command-line completion
+set wildmode=longest,list,full
 set wildmenu
 
 " Show partial commands in the last line of the screen
@@ -126,7 +127,7 @@ set nomodeline
 " use is very much a personal preference, but they are harmless.
 
 " add filename to statusline
-set statusline+=%m%f
+"set statusline+=%m%f
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -167,8 +168,8 @@ set t_vb=
 set mouse=a
 
 " Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
-set cmdheight=2
+" 'press <Enter> to continue'
+"set cmdheight=2
 
 " Display line numbers on the left
 set number
@@ -222,7 +223,7 @@ map ,b :BufExplorer<CR>
 map ,s :BufExplorerHorizontalSplit<CR>
 map ,v :BufExplorerVerticalSplit<CR>
 " map ,v :e ~/.vimrc<CR>
-nmap ,V :! source ~/.vimrc<CR>
+nmap ,V :source ~/.vimrc<CR>
 map ,o o<Esc>
 map ,O O<Esc>
 map ,p <Esc>:set paste!<CR>
@@ -232,6 +233,13 @@ vmap r "_dP
 
 set backupdir=~/.vimbackup
 set directory=~/.vimswap
+
+set foldlevelstart=20
+
+"------------------------------------------------------------
+" vim-javascript
+"
+autocmd FileType javascript setlocal foldmethod=syntax
 
 
 "------------------------------------------------------------
@@ -258,12 +266,11 @@ let g:CommandTWildIgnore="*/node_modules,*/env,*/.git"
 
 let g:CommandTAlwaysShowDotFiles=1
 
-
 "------------------------------------------------------------
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
