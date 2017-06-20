@@ -19,6 +19,14 @@ move_to_old $HOME/.bash_aliases
 ln -s $HOME/cfg/dotfiles/profile/.bash_aliases $HOME/.bash_aliases
 
 move_to_old $HOME/.tmux.conf
+if [ "$(uname)" == "Darwin" ]; then
+    ln -s $HOME/cfg/dotfiles/profile/.tmux.conf_OSX $HOME/.tmux.conf
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    ln -s $HOME/cfg/dotfiles/profile/.tmux.conf_UBU $HOME/.tmux.conf
+#elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Hopefully we never get here
+fi
+
 ln -s $HOME/cfg/dotfiles/shell-session/.tmux.conf $HOME/.tmux.conf
 
 move_to_old $HOME/.gitconfig
