@@ -8,9 +8,9 @@ function tabtitle(){
     REPO_NAME=`git rev-parse --show-toplevel 2> /dev/null | awk -F'/' '{print $NF}'`;
     if [ -z "$REPO_NAME" ]
     then
-        echo ""
+        echo "${PWD##*/}"
     else
-        echo "[$REPO_NAME] "
+        echo "[$REPO_NAME] ${PWD##*/}"
     fi
 }
 #if [ $ITERM_SESSION_ID ]; then
@@ -27,7 +27,7 @@ addToPromptCommand() {
 
 # Set iTerm title to show current directory
 if [ $ITERM_SESSION_ID ]; then
-  addToPromptCommand 'echo -ne "\033];$(tabtitle)${PWD##*/}\007";'
+  addToPromptCommand 'echo -ne "\033];$(tabtitle)\007";'
 fi
 
 ## bash_aliases
