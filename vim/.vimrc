@@ -35,8 +35,9 @@ Plugin 'vim-scripts/VimClojure'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'Chiel92/vim-autoformat'
+"Plugin 'junegunn/vim-easy-align'
+"Plugin 'Chiel92/vim-autoformat'
+Plugin 'reedes/vim-pencil'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -276,7 +277,7 @@ let g:syntastic_sh_shellcheck_quiet_messages = {
 map ,m :SyntasticToggleMode<CR>
 
 "------------------------------------------------------------
-" EasyAlign 
+" EasyAlign
 "
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga EasyAlign
@@ -287,7 +288,7 @@ nmap ga :EasyAlign<CR>
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap ,<Bslash> :EasyAlign*<Bar><Enter>
 
-"---------
+"------------------------------------------------------------
 " vimdiff
 "
 " Better highlighting
@@ -295,3 +296,19 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=157 gui=none guifg=bg guibg=R
 highlight DiffDelete cterm=bold ctermfg=10 ctermbg=217 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=229 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=45  gui=none guifg=bg guibg=Red
+
+"------------------------------------------------------------
+" vim-pencil
+"
+"
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+
+let g:pencil#conceallevel = 0
+
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init({'wrap': 'hard'})
+augroup END
+
+set foldenable
