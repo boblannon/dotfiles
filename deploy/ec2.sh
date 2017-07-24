@@ -27,8 +27,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Hopefully we never get here
 fi
 
-ln -s $HOME/cfg/dotfiles/shell-session/.tmux.conf $HOME/.tmux.conf
-
 move_to_old $HOME/.gitconfig
 ln -s $HOME/cfg/dotfiles/git/.gitconfig $HOME/.gitconfig
 
