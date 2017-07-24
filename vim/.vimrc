@@ -28,6 +28,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'mzlogin/vim-markdown-toc'
 "Plugin 'alfredodeza/pytest.vim'
 Plugin 'corntrace/bufexplorer'
 "Plugin 'Lokaltog/vim-distinguished'
@@ -319,3 +320,9 @@ augroup pencil
 augroup END
 
 set foldenable
+
+"------------------------------------------------------------
+" vim-markdown-toc
+"
+"
+let g:vmt_auto_update_on_save = 0
