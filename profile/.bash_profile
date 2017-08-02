@@ -1,5 +1,5 @@
 # Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color
+export TERM=screen-256color
 
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
