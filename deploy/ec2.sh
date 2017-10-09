@@ -52,3 +52,6 @@ if [ -d $HOME/.vim/bundle/command-t ]; then
     cd $HOME/.vim/bundle/command-t/
     rake make
 fi
+
+move_to_old $HOME/.jshintrc
+ln -s $HOME/cfg/dotfiles/profile/.jshintrc $HOME/.jshintrc

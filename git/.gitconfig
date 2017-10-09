@@ -3,3 +3,7 @@
 [filter "clean_ipynb"]
 	clean = ipynb_drop_output
 	smudge = cat
+[push]
+	default = simple
+[core]
+	excludesfile = /root/.gitignore
