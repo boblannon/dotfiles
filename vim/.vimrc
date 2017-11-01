@@ -39,6 +39,7 @@ Plugin 'pangloss/vim-javascript'
 "Plugin 'junegunn/vim-easy-align'
 "Plugin 'Chiel92/vim-autoformat'
 Plugin 'reedes/vim-pencil'
+Plugin 'elzr/vim-json'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -325,3 +326,15 @@ set foldenable
 "
 "
 let g:vmt_auto_update_on_save = 0
+
+"----
+" json-vim
+augroup json_autocmd
+  autocmd!
+  autocmd FileType json set autoindent
+  autocmd FileType json set formatoptions=tcq2l
+  autocmd FileType json set textwidth=78 shiftwidth=2
+  autocmd FileType json set softtabstop=2 tabstop=8
+  autocmd FileType json set expandtab
+  autocmd FileType json set foldmethod=syntax
+augroup END
