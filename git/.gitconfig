@@ -5,5 +5,3 @@
 	smudge = cat
 [push]
 	default = simple
-[core]
-	excludesfile = /root/.gitignore
