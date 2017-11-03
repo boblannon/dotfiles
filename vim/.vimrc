@@ -36,6 +36,7 @@ Plugin 'vim-scripts/VimClojure'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
+Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'junegunn/vim-easy-align'
 "Plugin 'Chiel92/vim-autoformat'
 Plugin 'reedes/vim-pencil'
@@ -338,3 +339,9 @@ augroup json_autocmd
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
 augroup END
+
+"------------------------------------------------------------
+" vim-better-whitespace
+"
+autocmd BufEnter * EnableStripWhitespaceOnSave
+let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
