@@ -41,6 +41,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'Chiel92/vim-autoformat'
 Plugin 'reedes/vim-pencil'
 Plugin 'elzr/vim-json'
+Plugin 'heavenshell/vim-jsdoc'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -230,6 +231,8 @@ nmap ,V :source ~/.vimrc<CR>
 map ,o o<Esc>
 map ,O O<Esc>
 map ,p <Esc>:set paste!<CR>
+map ]l :lnext<CR>
+map [l :lprevious<CR>
 
 " send current selection to black hole and paste
 vmap r "_dP
@@ -243,7 +246,7 @@ set foldlevelstart=20
 " vim-javascript
 "
 autocmd FileType javascript setlocal foldmethod=syntax
-
+let g:javascript_plugin_jsdoc = 1
 
 "------------------------------------------------------------
 " vim-markdown
@@ -279,6 +282,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
 
 let g:syntastic_sh_shellcheck_quiet_messages = {
             \ "!level": "errors",
@@ -345,3 +349,12 @@ augroup END
 "
 autocmd BufEnter * EnableStripWhitespaceOnSave
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
+
+"------------------------------------------------------------
+" vim-jsdoc
+"
+let g:jsdoc_enable_es6=1
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_input_description=1
+let g:jsdoc_param_description_separator=' - '
+autocmd FileType javascript map ,d :JsDoc<CR>
