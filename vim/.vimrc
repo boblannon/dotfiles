@@ -114,7 +114,7 @@ set showcmd
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
-hi Search cterm=NONE ctermfg=white ctermbg=gray
+hi! Search cterm=NONE gui=NONE ctermbg=3 ctermfg=0 guibg=#b58900 guifg=#002b36
 
 " Modelines have historically been a source of security vulnerabilities. As
 " such, it may be a good idea to disable them and use the securemodelines
