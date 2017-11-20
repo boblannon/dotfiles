@@ -6,16 +6,27 @@ export PATH="$PATH:$HOME/scripts"
 ### custom tab title
 function tabtitle(){
     REPO_NAME=`git rev-parse --show-toplevel 2> /dev/null | awk -F'/' '{print $NF}'`;
-    if [ -z "$REPO_NAME" ]
+    REMOTE_NAME=`echo $CURRENT_REMOTE_NAME`;
+    if [ -z "$REMOTE_NAME" ]
     then
-        echo "${PWD##*/}"
+        if [ -z "$REPO_NAME" ]
+        then
+            echo "${PWD##*/}"
+        else
+            echo "[$REPO_NAME] ${PWD##*/}"
+        fi
     else
-        echo "[$REPO_NAME] ${PWD##*/}"
+        echo "$REMOTE_NAME"
     fi
 }
 #if [ $ITERM_SESSION_ID ]; then
 #    export PROMPT_COMMAND='echo -ne "\033];$(tabtitle)${PWD##*/}\007"; ':"$PROMPT_COMMAND";
 #fi
+
+function ms() {
+    export CURRENT_REMOTE_NAME="$1"
+    morecs ssh "$1"
+}
 
 # Add command to PROMPT_COMMAND (runs before each command)
 # Makes sure the command is not already in PROMPT_COMMAND
