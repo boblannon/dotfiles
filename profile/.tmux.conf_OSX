@@ -1,8 +1,4 @@
-#new-session
-set -g default-shell $SHELL 
-set -g default-command "reattach-to-user-namespace -l ${SHELL}"
-
-set -g default-terminal "screen-256color"
+set -g default-shell $SHELL
 
 # remap prefix to Control + a
 set -g prefix C-a
@@ -18,7 +14,6 @@ unbind ^A
 bind ^A select-pane -t :.+
 
 # mouse option (simplified as of tmux 2.1)
-#set-window-option -g mode-mouse copy-mode
 set -g mouse on
 
 # history
