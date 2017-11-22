@@ -13,7 +13,7 @@ function tabtitle(){
         then
             echo "${PWD##*/}"
         else
-            echo "[$REPO_NAME] ${PWD##*/}"
+            echo "[$REPO_NAME]"
         fi
     else
         echo "$REMOTE_NAME"
