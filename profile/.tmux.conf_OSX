@@ -1,5 +1,8 @@
 set -g default-shell $SHELL
 
+set-option -g set-titles on
+set-option -g set-titles-string '#W (local)'
+
 # remap prefix to Control + a
 set -g prefix C-a
 unbind C-b
