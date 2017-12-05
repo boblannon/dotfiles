@@ -71,4 +71,7 @@ do
   brew install $p
 done
 
+brew install gnu-sed --with-default-names
+brew install grep --with-default-names
+
 mkdir ~/.nvm
