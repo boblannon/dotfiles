@@ -1,7 +1,5 @@
 #new-session
 
-set -g default-terminal "screen-256color"
-
 # remap prefix to Control + a
 set -g prefix C-a
 unbind C-b
