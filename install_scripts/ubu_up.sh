@@ -1,5 +1,5 @@
 #!/bin/bash
-apt-get -y -q install bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu
+apt-get -y -q install bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu postgresql-client
 
 pip install awscli --upgrade
 
