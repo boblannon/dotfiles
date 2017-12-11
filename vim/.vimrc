@@ -333,7 +333,8 @@ set foldenable
 let g:vmt_auto_update_on_save = 0
 
 "----
-" json-vim
+" vim-json
+let g:vim_json_syntax_conceal = 0
 augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent
