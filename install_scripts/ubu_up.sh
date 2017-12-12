@@ -3,7 +3,8 @@ apt-get -y -q install bash-completion wget ack-grep htop tree vim-nox ruby-dev r
 
 pip install awscli --upgrade
 
-npm install -g jshint
+yarn global add jshint
+yarn global add jsonlint
 
 # build and install new tmux
 mkdir src
