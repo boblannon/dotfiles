@@ -42,6 +42,8 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'reedes/vim-pencil'
 Plugin 'elzr/vim-json'
 Plugin 'heavenshell/vim-jsdoc'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-characterize'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -294,10 +296,10 @@ map ,m :SyntasticToggleMode<CR>
 " EasyAlign
 "
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga EasyAlign
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga :EasyAlign<CR>
+"xmap ea EasyAlign
+"
+"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"nmap a :EasyAlign<CR>
 
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap ,<Bslash> :EasyAlign*<Bar><Enter>
