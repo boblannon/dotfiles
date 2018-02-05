@@ -29,3 +29,5 @@ alias seba='source ./env/bin/activate '
 
 # reattach-to-user-namespace to make terminal-notifier work within tmux
 alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
+
+alias s3basename='awk -F " " '"'"'{ print $4 }'"'"''
