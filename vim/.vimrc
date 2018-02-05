@@ -78,8 +78,6 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax enable
 set background=light
-"let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
 colorscheme solarized
 
 "------------------------------------------------------------
