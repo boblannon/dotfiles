@@ -105,6 +105,10 @@ fi
 ## editor
 export EDITOR="vim"
 
+if [ -n "$TMUX" ]; then
+   alias vim="TERM=screen-256color vim"
+fi
+
 ## apache-spark
 export SPARK_HOME=/usr/local/Cellar/apache-spark/2.1.0/libexec
 export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
