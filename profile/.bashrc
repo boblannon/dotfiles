@@ -86,6 +86,8 @@ gpip3(){
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/dev
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
+    export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
     source /usr/local/bin/virtualenvwrapper.sh
 
     # mkvirtualenv with py3
