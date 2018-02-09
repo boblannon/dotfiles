@@ -1,7 +1,7 @@
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 # Ensure user-installed binaries take precedence
-export PATH=/usr/local/bin:$PATH
+export PATH="/usr/local/bin:$(getconf PATH)"
 
 # Load .bashrc if it exists
 test -f ~/.bashrc && source ~/.bashrc

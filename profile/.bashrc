@@ -127,6 +127,11 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 
+### rvm
+unset GEM_HOME
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
 ## nvm
 export NVM_DIR="$HOME/.nvm"
 if [ -f /usr/local/opt/nvm/nvm.sh ]; then
@@ -135,11 +140,7 @@ else
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 fi
 
-### rvm
-unset GEM_HOME
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ## mapbox
 if [ -f "$(npm root -g)/mbxcli/mapbox.sh" ]; then
@@ -150,4 +151,3 @@ fi
 ack_color() {
     ack --passthru --color-match=red "$1"
 }
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
