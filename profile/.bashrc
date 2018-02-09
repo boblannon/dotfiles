@@ -108,8 +108,9 @@ fi
 export EDITOR="vim"
 
 if [ -n "$TMUX" ]; then
-   alias vim="TERM=screen-256color vim"
+    alias vim="TERM=screen-256color vim"
 fi
+
 
 ## apache-spark
 export SPARK_HOME=/usr/local/Cellar/apache-spark/2.1.0/libexec
