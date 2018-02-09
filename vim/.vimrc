@@ -42,8 +42,12 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'reedes/vim-pencil'
 Plugin 'elzr/vim-json'
 Plugin 'heavenshell/vim-jsdoc'
+Plugin 'ruanyl/vim-fixmyjs'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-characterize'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'wincent/command-t'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -51,8 +55,6 @@ Plugin 'FuzzyFinder'
 "Plugin 'BlackBeauty'
 "Plugin 'python.vim'
 "Plugin 'jellybeans.vim'
-" non github repos
-Plugin 'git://git.wincent.com/command-t.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -78,8 +80,7 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax enable
 set background=light
-"let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+let g:solarized_termtrans = 1
 colorscheme solarized
 
 "------------------------------------------------------------
@@ -235,8 +236,10 @@ nmap ,V :source ~/.vimrc<CR>
 map ,o o<Esc>
 map ,O O<Esc>
 map ,p <Esc>:set paste!<CR>
-map ]l :lnext<CR>
 map [l :lprevious<CR>
+map ]l :lnext<CR>
+map [L :lfirst<CR>
+map ]L :llast<CR>
 
 " send current selection to black hole and paste
 vmap r "_dP
@@ -292,7 +295,21 @@ let g:syntastic_sh_shellcheck_quiet_messages = {
             \ "!level": "errors",
             \ "type": "style" }
 
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
+let g:syntastic_error_symbol = "\u2717"         " ballot x ( ✗ )
+let g:syntastic_warning_symbol = "\u26A0"       " warning sign (⚠ )
+let g:syntastic_style_error_symbol = "\u27EB"   " mathematical right double angle bracket (⟫)
+let g:syntastic_style_warning_symbol = "\u26E9" " mathematical right angle bracket (⟩)
+
 map ,m :SyntasticToggleMode<CR>
+
+"------------------------------------------------------------
+" fixmyjs
+let g:fixmyjs_engine = 'eslint'
+let g:fixmyjs_use_local = 1
+let g:fixmyjs_rc_filename = ['.eslintrc', '.eslintrc.js', '.eslintrc.json']
+autocmd FileType javascript map ,f :Fixmyjs<CR>
 
 "------------------------------------------------------------
 " EasyAlign
