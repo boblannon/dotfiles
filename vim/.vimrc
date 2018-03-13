@@ -45,9 +45,10 @@ Plugin 'heavenshell/vim-jsdoc'
 Plugin 'ruanyl/vim-fixmyjs'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-characterize'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 Plugin 'wincent/command-t'
+Plugin 'Valloric/YouCompleteMe'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -380,3 +381,14 @@ let g:jsdoc_allow_input_prompt=1
 let g:jsdoc_input_description=1
 let g:jsdoc_param_description_separator=' - '
 autocmd FileType javascript map ,d :JsDoc<CR>
+
+
+"------------------------------------------------------------
+" ultisnips
+"
+let g:UltiSnipsUsePythonVersion = 3
+
+"---------
+" YouCompleteMe
+"
+let g:ycm_show_diagnostics_ui = 0
