@@ -303,6 +303,10 @@ let g:syntastic_warning_symbol = "\u26A0"       " warning sign (⚠ )
 let g:syntastic_style_error_symbol = "\u27EB"   " mathematical right double angle bracket (⟫)
 let g:syntastic_style_warning_symbol = "\u26E9" " mathematical right angle bracket (⟩)
 
+let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
 map ,m :SyntasticToggleMode<CR>
 
 "------------------------------------------------------------
