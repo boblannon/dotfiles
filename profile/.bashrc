@@ -152,3 +152,7 @@ fi
 ack_color() {
     ack --passthru --color-match=red "$1"
 }
+
+if [ -f ~/.config/exercism/exercism_completion.bash ]; then
+  . ~/.config/exercism/exercism_completion.bash
+fi
