@@ -45,9 +45,10 @@ Plugin 'heavenshell/vim-jsdoc'
 Plugin 'ruanyl/vim-fixmyjs'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-characterize'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
 Plugin 'wincent/command-t'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 
 " vim-scripts repos
@@ -388,11 +389,26 @@ autocmd FileType javascript map ,d :JsDoc<CR>
 
 
 "------------------------------------------------------------
+" supertab
+"
+" make YCM compatible with UltiSnips (using supertab)
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+"------------------------------------------------------------
 " ultisnips
 "
 let g:UltiSnipsUsePythonVersion = 3
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 "---------
 " YouCompleteMe
 "
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_global_ycm_extra_conf = '~/.global_ycm_extra_conf.py'
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
