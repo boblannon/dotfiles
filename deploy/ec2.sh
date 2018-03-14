@@ -44,6 +44,7 @@ git config --global core.excludesfile $HOME/.gitignore
 [[ -d $HOME/.vimswap ]] || mkdir -p $HOME/.vimswap
 move_to_old $HOME/.vimrc
 ln -s $HOME/cfg/dotfiles/vim/.vimrc $HOME/.vimrc
+ln -s $HOME/cfg/dotfiles/vim/.global_ycm_extra_conf.py $HOME/.global_ycm_extra_conf.py
 
 vim +PluginInstall +qall
 
