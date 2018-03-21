@@ -49,7 +49,7 @@ Plugin 'wincent/command-t'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 " vim-scripts repos
 Plugin 'L9'
