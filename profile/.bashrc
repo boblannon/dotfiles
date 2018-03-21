@@ -156,3 +156,6 @@ ack_color() {
 if [ -f ~/.config/exercism/exercism_completion.bash ]; then
   . ~/.config/exercism/exercism_completion.bash
 fi
+
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
