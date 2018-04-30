@@ -2,3 +2,7 @@
 atom/kite_config.json
 
 src
+
+irssi/config.autosave
+irssi/_windowlist
+irssi/_nicklistfifo
