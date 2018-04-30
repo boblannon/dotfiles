@@ -55,3 +55,6 @@ fi
 
 move_to_old $HOME/.jshintrc
 ln -s $HOME/cfg/dotfiles/profile/.jshintrc $HOME/.jshintrc
+
+move_to_old $HOME/.irssi
+ln -s $HOME/cfg/dotfiles/irssi $HOME/.irssi
