@@ -49,7 +49,10 @@ Plugin 'wincent/command-t'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+Plugin 'cespare/vim-toml'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -308,6 +311,8 @@ let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
+autocmd FileType rust let g:syntastic_rust_checkers = ['cargo']
+
 map ,m :SyntasticToggleMode<CR>
 
 "------------------------------------------------------------
@@ -412,3 +417,14 @@ let g:ycm_global_ycm_extra_conf = '~/.global_ycm_extra_conf.py'
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
+
+"------------------------------------------------------------
+" vim-racer
+"
+let g:racer_cmd = "$HOME/.cargo/bin/racer"
+"au FileType rust nmap gd <Plug>(rust-def)
+"au FileType rust nmap gs <Plug>(rust-def-split)
+"au FileType rust nmap gx <Plug>(rust-def-vertical)
+"au FileType rust nmap ,gd <Plug>(rust-doc)

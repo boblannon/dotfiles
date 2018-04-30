@@ -6,6 +6,12 @@ pip install awscli --upgrade
 yarn global add jshint
 yarn global add jsonlint
 
+# install rust
+#curl https://sh.rustup.rs -sSf | sh
+#cargo install racer
+#rustup component add rust-src
+
+
 # build and install new tmux
 mkdir src
 cd src

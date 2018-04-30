@@ -143,11 +143,6 @@ fi
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-## mapbox
-if [ -f "$(npm root -g)/mbxcli/mapbox.sh" ]; then
-    source "$(npm root -g)/mbxcli/mapbox.sh"
-fi
-
 ## ack colorizing
 ack_color() {
     ack --passthru --color-match=red "$1"
@@ -159,3 +154,36 @@ fi
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+# rust
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+## irssi
+# create the pane with irssi's nicklist
+function irssi_nickpane() {
+    tmux renamew irssi                                              # name the window
+    tmux -q setw main-pane-width $(( $(tput cols) - 21))            # set the main pane width to the total width-20
+    tmux splitw -v "cat ~/.irssi/nicklistfifo"                      # create the window and begin reading the fifo
+    tmux -q selectl main-vertical                                   # assign the layout
+    tmux selectw -t irssi                                           # select window 'irssi'
+    tmux selectp -t 0                                               # select pane 0
+    tmux send-keys -t 0 "/nicklist fifo" C-m
+}
+
+# irssi wrapper
+function irssi() {
+    irssi_nickpane
+    $(which irssi)                                                  # launch irssi
+}
+
+# repair running irssi's nicklist pane
+function irssi_repair() {
+    tmux selectw -t irssi
+    tmux selectp -t 0
+    tmux killp -a                                                   # kill all panes
+    irssi_nickpane
+}
