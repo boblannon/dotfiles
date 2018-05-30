@@ -210,6 +210,10 @@ set expandtab
 "set shiftwidth=2
 "set tabstop=2
 
+"------------------------------------------------------------
+" Split to the right and below, which feels more natural than defaults
+set splitbelow
+set splitright
 
 "------------------------------------------------------------
 " Mappings {{{1
