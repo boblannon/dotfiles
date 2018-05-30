@@ -1,4 +1,5 @@
 #!/bin/bash
+apt-get -y -q install build-essential
 apt-get -y -q install ncurses-term bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu postgresql-client
 
 pip install awscli --upgrade
@@ -7,10 +8,7 @@ yarn global add jshint
 yarn global add jsonlint
 
 # install rust
-#curl https://sh.rustup.rs -sSf | sh
-#cargo install racer
-#rustup component add rust-src
-
+curl https://sh.rustup.rs -sSf | sh
 
 # build and install new tmux
 mkdir src
