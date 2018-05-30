@@ -21,6 +21,7 @@ set -g mouse on
 
 # history
 set -g history-limit 30000
+bind -n C-k clear-history
 
 # vi in copy mode
 setw -g mode-keys vi
