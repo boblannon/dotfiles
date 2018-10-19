@@ -58,3 +58,9 @@ ln -s $HOME/cfg/dotfiles/profile/.jshintrc $HOME/.jshintrc
 
 move_to_old $HOME/.irssi
 ln -s $HOME/cfg/dotfiles/irssi $HOME/.irssi
+
+   #TODO: add this to compile YCM
+   # 6  cd ~/.vim/bundle/YouCompleteMe/
+   # 10  npm install -g typescript
+   # 12  apt install build-essential cmake python3-dev
+   # 13  ./install.py
