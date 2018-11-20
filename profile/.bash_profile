@@ -12,8 +12,8 @@ test -f ~/.bashrc && source ~/.bashrc
 [ -f ~/.bash_secrets ] && source ~/.bash_secrets
 
 ## mapbox
-if [ -f "$(npm root -g)/mbxcli/bin/mapbox.sh" ]; then
-    source "$(npm root -g)/mbxcli/bin/mapbox.sh"
+if [ -f "$(npm root -g)/@mapbox/mbxcli/bin/mapbox.sh" ]; then
+    source "$(npm root -g)/@mapbox/mbxcli/bin/mapbox.sh"
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
