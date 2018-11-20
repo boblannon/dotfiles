@@ -417,7 +417,10 @@ let g:snips_author="boblannon"
 "---------
 " YouCompleteMe
 "
+
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_register_as_syntastic_checker = 1 "default 1
+let g:Show_diagnostics_ui = 1 "default 1
 let g:ycm_global_ycm_extra_conf = '~/.global_ycm_extra_conf.py'
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
