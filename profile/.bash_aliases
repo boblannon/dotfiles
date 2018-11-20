@@ -22,7 +22,7 @@ alias gmv='git mv '
 alias git_statuses='for dir in $(find -L . -type d -d 1); do cd $dir; curr_branch=`git branch | grep "*"`; echo "${dir} ${curr_branch}"; cd ..; done;'
 
 alias ipynb='jupyter notebook'
-alias pyserve='python -m SimpleHTTPServer '
+alias pyserve='python -m http.server '
 
 alias openports='sudo lsof -i -n -P '
 
