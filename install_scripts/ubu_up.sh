@@ -1,6 +1,12 @@
 #!/bin/bash
-apt-get -y -q install build-essential
+apt-get update -y \
+    && apt-get install -y locales curl \
+    && locale-gen en_US.UTF-8 \
+    && bash -c "echo \"Etc/UTC\" > /etc/timezone"
+
+apt-get -y -q install build-essential cmake
 apt-get -y -q install ncurses-term bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu postgresql-client
+
 
 pip install awscli --upgrade
 
