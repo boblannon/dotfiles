@@ -319,6 +319,19 @@ autocmd FileType rust let g:syntastic_rust_checkers = ['cargo']
 
 map ,m :SyntasticToggleMode<CR>
 
+"" Fix loclist on vertical split
+"function! SyntasticSplitFix()
+"  let currwin = winnr()
+"  wincmd p
+"  if !empty(getloclist(0))
+"    lclose
+"    lopen
+"  endif
+"  execute currwin . 'wincmd w'
+"endfunction
+"
+"cabbrev vs vs\|call SyntasticSplitFix()
+
 "------------------------------------------------------------
 " fixmyjs
 let g:fixmyjs_engine = 'eslint'
