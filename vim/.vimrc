@@ -306,6 +306,8 @@ let g:syntastic_sh_shellcheck_quiet_messages = {
 
 let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
+let g:syntastic_javascript_eslint_quiet_messages={
+            \ "!level": "errors"}
 let g:syntastic_error_symbol = "\u2717"         " ballot x ( ✗ )
 let g:syntastic_warning_symbol = "\u26A0"       " warning sign (⚠ )
 let g:syntastic_style_error_symbol = "\u27EB"   " mathematical right double angle bracket (⟫)
