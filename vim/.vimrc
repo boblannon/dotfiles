@@ -53,6 +53,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'cespare/vim-toml'
+Plugin 'posva/vim-vue'
 
 " vim-scripts repos
 Plugin 'L9'
