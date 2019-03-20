@@ -88,7 +88,9 @@ syntax enable
 set background=light
 let g:solarized_termtrans = 1
 colorscheme solarized
-
+if &diff
+    colorscheme solarized
+endif
 "------------------------------------------------------------
 " Must have options {{{1
 "
