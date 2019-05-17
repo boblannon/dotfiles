@@ -253,6 +253,9 @@ map ]l :lnext<CR>
 map [L :lfirst<CR>
 map ]L :llast<CR>
 
+" format json using jq
+autocmd FileType json map ,f :%!jq '.'<CR>
+
 " send current selection to black hole and paste
 vmap r "_dP
 
