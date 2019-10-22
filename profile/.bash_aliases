@@ -32,3 +32,6 @@ alias seba='source ./env/bin/activate '
 alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
 
 alias s3basename='awk -F " " '"'"'{ print $4 }'"'"''
+
+alias ringbell='echo -e "\a"'
+alias dockerlogin='eval "$(aws ecr get-login --region us-east-1 --no-include-email)"'
