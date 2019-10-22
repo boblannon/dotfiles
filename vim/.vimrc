@@ -274,6 +274,8 @@ let g:javascript_plugin_jsdoc = 1
 " vim-markdown
 "
 autocmd FileType markdown map ,t :TableFormat<CR>
+" autocmd FileType markdown setlocal foldmethod=syntax
+let g:vim_markdown_folding_style_pythonic = 1
 
 "------------------------------------------------------------
 " NERDtree
@@ -314,10 +316,12 @@ let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
 let g:syntastic_javascript_eslint_quiet_messages={
             \ "!level": "errors"}
+let g:syntastic_python_flake8_args='--ignore=C901'
+
 let g:syntastic_error_symbol = "\u2717"         " ballot x ( ✗ )
 let g:syntastic_warning_symbol = "\u26A0"       " warning sign (⚠ )
-let g:syntastic_style_error_symbol = "\u27EB"   " mathematical right double angle bracket (⟫)
-let g:syntastic_style_warning_symbol = "\u26E9" " mathematical right angle bracket (⟩)
+let g:syntastic_style_error_symbol = "\u2691"   " black flag (⚑ )
+let g:syntastic_style_warning_symbol = "\u2690" " white flag (⚐ )
 
 let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
 let g:syntastic_cpp_compiler = 'g++'
@@ -333,6 +337,8 @@ let g:fixmyjs_engine = 'eslint'
 let g:fixmyjs_use_local = 1
 let g:fixmyjs_rc_filename = ['.eslintrc', '.eslintrc.js', '.eslintrc.json']
 autocmd FileType javascript map ,f :Fixmyjs<CR>
+
+
 
 "------------------------------------------------------------
 " EasyAlign
@@ -368,7 +374,7 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
 augroup END
 
-set foldenable
+" set foldenable
 
 "------------------------------------------------------------
 " vim-markdown-toc
@@ -383,8 +389,8 @@ augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent
   autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=78 shiftwidth=4
-  autocmd FileType json set softtabstop=4 tabstop=8
+  autocmd FileType json set textwidth=78 shiftwidth=2
+  autocmd FileType json set softtabstop=2 tabstop=4
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
 augroup END
