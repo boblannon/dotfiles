@@ -187,3 +187,4 @@ function irssi_repair() {
     tmux killp -a                                                   # kill all panes
     irssi_nickpane
 }
+export PATH=~/bin:$PATH

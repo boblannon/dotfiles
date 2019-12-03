@@ -5,10 +5,16 @@ apt-get update -y \
     && bash -c "echo \"Etc/UTC\" > /etc/timezone"
 
 apt-get -y -q install build-essential cmake
+apt-get -y -q install python3-pip python3-venv
 apt-get -y -q install ncurses-term bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu postgresql-client
 
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-pip install awscli --upgrade
+apt update && apt install yarn
+
+
+pip3 install awscli --upgrade
 
 yarn global add jshint
 yarn global add jsonlint
