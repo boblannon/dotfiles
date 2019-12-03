@@ -13,7 +13,6 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 
 apt update && apt install yarn
 
-
 pip3 install awscli --upgrade
 
 yarn global add jshint
