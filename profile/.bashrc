@@ -92,7 +92,6 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     alias mkvirtualenv3='mkvirtualenv --python=$(which python3)'
 fi
 
-
 ## history
 # Key bindings, up/down arrow searches through history
 if [ -t 1 ]; then
@@ -109,7 +108,6 @@ if [ -n "$TMUX" ]; then
     alias vim="TERM=screen-256color vim"
 fi
 
-
 ## apache-spark
 export SPARK_HOME=/usr/local/Cellar/apache-spark/2.1.0/libexec
 export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
@@ -120,18 +118,6 @@ export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.1
 ## transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
     tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
-
-## ruby
-export PATH=/usr/local/opt/ruby/bin:$PATH
-
-### rbenv
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-
-### rvm
-unset GEM_HOME
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 ## nvm
 export NVM_DIR="$HOME/.nvm"
@@ -161,7 +147,6 @@ if [ -d "$HOME/.cargo/bin" ]; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
-
 ## irssi
 # create the pane with irssi's nicklist
 function irssi_nickpane() {
@@ -187,4 +172,21 @@ function irssi_repair() {
     tmux killp -a                                                   # kill all panes
     irssi_nickpane
 }
-export PATH=~/bin:$PATH
+
+export PATH="$HOME/bin:$PATH"
+
+## ruby
+# export PATH=/usr/local/opt/ruby/bin:$PATH
+
+### rbenv
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+
+### rvm
+unset GEM_HOME
+if [ -s "$HOME/.rvm/scripts/rvm" ]; then
+    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
