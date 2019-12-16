@@ -1,4 +1,5 @@
 #new-session
+set -g default-command "${SHELL}"
 
 # remap prefix to Control + a
 set -g prefix C-a
