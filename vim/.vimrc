@@ -1,5 +1,6 @@
 set encoding=utf-8
 set delcombine
+set exrc
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -451,3 +452,5 @@ let g:racer_cmd = "$HOME/.cargo/bin/racer"
 "au FileType rust nmap gs <Plug>(rust-def-split)
 "au FileType rust nmap gx <Plug>(rust-def-vertical)
 "au FileType rust nmap ,gd <Plug>(rust-doc)
+
+set secure

@@ -1,3 +1,6 @@
+# I'll migrate when I'm good and ready, thanks
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 # Ensure user-installed binaries take precedence
