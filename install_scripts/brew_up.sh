@@ -1,11 +1,14 @@
 #!/bin/bash
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+set -ex
 
-brew tap caskroom/cask
+# this isn't found for some reason but i don't know why
+#brew cask install font-inconsolata
+brew cask install keybase
 
-brew cask install font-inconsolata
-brew cask install java
+# needed for elasticsearch
+#brew cask install java
+brew cask install homebrew/cask-versions/adoptopenjdk8
 
 packages=(
   # utils
@@ -17,10 +20,10 @@ packages=(
   gnupg2
   htop
   jq
-  keybase
   wget
   gcc
   tree
+  cmake
 
   protobuf
   protobuf-c
@@ -40,12 +43,12 @@ packages=(
 
   # python
   python
-  python3
 
   # node
   v8
   node
   nvm
+  yarn
 
   # spark
 
@@ -71,7 +74,11 @@ do
   brew install $p
 done
 
-brew install gnu-sed --with-default-names
-brew install grep --with-default-names
+brew install gnu-sed
+brew install grep
+brew install ripgrep
 
-mkdir ~/.nvm
+mkdir $HOME/.nvm
+
+yarn global add jshint
+yarn global add jsonlint
