@@ -86,7 +86,7 @@ filetype indent plugin on
 
 " Enable syntax highlighting
 syntax enable
-set background=dark
+set background=light
 let g:solarized_termtrans = 1
 colorscheme solarized
 if &diff
