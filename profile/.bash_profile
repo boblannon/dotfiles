@@ -14,11 +14,6 @@ test -f ~/.bashrc && source ~/.bashrc
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f ~/.bash_secrets ] && source ~/.bash_secrets
 
-## mapbox
-if [ -f "$(npm root -g)/@mapbox/mbxcli/bin/mapbox.sh" ]; then
-    source "$(npm root -g)/@mapbox/mbxcli/bin/mapbox.sh"
-fi
-
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 export PATH="$HOME/.cargo/bin:$PATH"
