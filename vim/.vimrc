@@ -7,84 +7,94 @@ set exrc
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
+call plug#begin('~/.vim/plugged')
 " My Plugins here:
 "
 " original repos on github
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-surround'
-"Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'mzlogin/vim-markdown-toc'
-"Plugin 'alfredodeza/pytest.vim'
-Plugin 'corntrace/bufexplorer'
-"Plugin 'Lokaltog/vim-distinguished'
-Plugin 'vim-scripts/VimClojure'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'morhetz/gruvbox'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'pangloss/vim-javascript'
-Plugin 'ntpeters/vim-better-whitespace'
-"Plugin 'junegunn/vim-easy-align'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'reedes/vim-pencil'
-Plugin 'elzr/vim-json'
-Plugin 'heavenshell/vim-jsdoc'
-Plugin 'ruanyl/vim-fixmyjs'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-characterize'
-" Plugin 'wincent/command-t'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
-Plugin 'cespare/vim-toml'
-Plugin 'posva/vim-vue'
-Plugin 'psf/black'
-Plugin 'hashivim/vim-terraform'
-Plugin 'juliosueiras/vim-terraform-completion'
-Plugin 'mitsuhiko/vim-rst'
-Plugin 'nvie/vim-rst-tables'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+" git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-" vim-scripts repos
-Plugin 'L9'
-" Plugin 'FuzzyFinder'
-Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'BlackBeauty'
-"Plugin 'python.vim'
-"Plugin 'jellybeans.vim'
+" general
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'godlygeek/tabular'
+Plug 'corntrace/bufexplorer'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-characterize'
+Plug 'vim-scripts/L9'
+Plug 'ctrlpvim/ctrlp.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" colors
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+
+" markdown
+Plug 'plasticboy/vim-markdown'
+Plug 'mzlogin/vim-markdown-toc'
+
+" clojure
+Plug 'vim-scripts/VimClojure'
+
+" python
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'psf/black'
+Plug 'psf/black', { 'tag': '19.10b0' }
+
+" RST
+Plug 'mitsuhiko/vim-rst'
+Plug 'nvie/vim-rst-tables'
+
+" javascript/node
+Plug 'pangloss/vim-javascript'
+Plug 'ruanyl/vim-fixmyjs'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'posva/vim-vue'
+
+" text
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'Chiel92/vim-autoformat'
+Plug 'reedes/vim-pencil'
+
+" json
+Plug 'elzr/vim-json'
+
+" rust
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+
+" toml
+Plug 'cespare/vim-toml'
+
+" terraform
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" snippets/completion
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+
+" YouCompleteMe
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+" Syntastic
+function! Installjshint(info)
+  if a:info.status == 'installed' || a:info.force
+    !npm install -g jshint
+  endif
+endfunction
+Plug 'scrooloose/syntastic', { 'do': function('Installjshint') }
+
+call plug#end()
 
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
