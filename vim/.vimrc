@@ -35,6 +35,7 @@ Plugin 'corntrace/bufexplorer'
 "Plugin 'Lokaltog/vim-distinguished'
 Plugin 'vim-scripts/VimClojure'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -86,12 +87,26 @@ filetype indent plugin on
 
 " Enable syntax highlighting
 syntax enable
-set background=light
-let g:solarized_termtrans = 1
-colorscheme solarized
+
+" Background
+set background=dark
+
+"------------------------------------------------------------
+" Colorschemes
+"
+" Solarized
+" let g:solarized_termtrans = 1
+" colorscheme solarized
+" if &diff
+"     colorscheme solarized
+" endif
+
+" Gruvbox
+colorscheme gruvbox
 if &diff
-    colorscheme solarized
+    colorscheme gruvbox
 endif
+
 "------------------------------------------------------------
 " Must have options {{{1
 "
@@ -357,10 +372,10 @@ au FileType markdown vmap ,<Bslash> :EasyAlign*<Bar><Enter>
 " vimdiff
 "
 " Better highlighting
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=157 gui=none guifg=bg guibg=Red
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=217 gui=none guifg=bg guibg=Red
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=229 gui=none guifg=bg guibg=Red
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=45  gui=none guifg=bg guibg=Red
+" highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=157 gui=none guifg=bg guibg=Red
+" highlight DiffDelete cterm=bold ctermfg=10 ctermbg=217 gui=none guifg=bg guibg=Red
+" highlight DiffChange cterm=bold ctermfg=10 ctermbg=229 gui=none guifg=bg guibg=Red
+" highlight DiffText   cterm=bold ctermfg=10 ctermbg=45  gui=none guifg=bg guibg=Red
 
 "------------------------------------------------------------
 " vim-pencil
