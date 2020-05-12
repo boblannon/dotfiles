@@ -47,7 +47,7 @@ Plugin 'heavenshell/vim-jsdoc'
 Plugin 'ruanyl/vim-fixmyjs'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-characterize'
-Plugin 'wincent/command-t'
+" Plugin 'wincent/command-t'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
@@ -59,7 +59,8 @@ Plugin 'posva/vim-vue'
 
 " vim-scripts repos
 Plugin 'L9'
-Plugin 'FuzzyFinder'
+" Plugin 'FuzzyFinder'
+Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'BlackBeauty'
 "Plugin 'python.vim'
 "Plugin 'jellybeans.vim'
@@ -308,9 +309,13 @@ map <C-\> :NERDTreeToggle<CR>
 " CommandT
 "
 " wildcard ignore
-let g:CommandTWildIgnore="*/node_modules,*/env,*/.git"
+" let g:CommandTWildIgnore="*/node_modules,*/env,*/.git"
 
-let g:CommandTAlwaysShowDotFiles=1
+" let g:CommandTAlwaysShowDotFiles=1
+
+"------------------------------------------------------------
+" FuzzyFinder
+map <Leader>f :FufFile
 
 "------------------------------------------------------------
 " Syntastic
