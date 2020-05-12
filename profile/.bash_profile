@@ -5,6 +5,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export ARCHFLAGS="-arch x86_64"
 # Ensure user-installed binaries take precedence
 export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:/usr/local/bin:$(getconf PATH)"
+# Add user base binary directory
+# see: https://docs.python-guide.org/dev/virtualenvs/#installing-pipenv
+export PATH="$PATH:$(python -m site --user-base)/bin"
 # TeX
 export PATH="$PATH:/Library/TeX/texbin"
 
