@@ -186,7 +186,9 @@ export PATH="$HOME/bin:$PATH"
 unset GEM_HOME
 if [ -s "$HOME/.rvm/scripts/rvm" ]; then
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+    source $HOME/.rvm/scripts/rvm
 fi
+
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
