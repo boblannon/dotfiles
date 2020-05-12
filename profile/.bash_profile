@@ -19,4 +19,10 @@ test -f ~/.bashrc && source ~/.bashrc
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
 export PATH="$HOME/.cargo/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/robertlannon/.sdkman"
+[[ -s "/Users/robertlannon/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/robertlannon/.sdkman/bin/sdkman-init.sh"
