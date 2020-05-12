@@ -56,6 +56,12 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'cespare/vim-toml'
 Plugin 'posva/vim-vue'
+Plugin 'psf/black'
+Plugin 'hashivim/vim-terraform'
+Plugin 'juliosueiras/vim-terraform-completion'
+Plugin 'mitsuhiko/vim-rst'
+Plugin 'nvie/vim-rst-tables'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " vim-scripts repos
 Plugin 'L9'
@@ -269,6 +275,7 @@ map [l :lprevious<CR>
 map ]l :lnext<CR>
 map [L :lfirst<CR>
 map ]L :llast<CR>
+nmap u :echo 'You hit u by mistake again'<CR>
 
 " format json using jq
 autocmd FileType json map ,f :%!jq '.'<CR>
@@ -337,7 +344,7 @@ let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
 let g:syntastic_javascript_eslint_quiet_messages={
             \ "!level": "errors"}
-let g:syntastic_python_flake8_args='--ignore=C901'
+"let g:syntastic_python_flake8_args='--ignore=C901'
 
 let g:syntastic_error_symbol = "\u2717"         " ballot x ( ✗ )
 let g:syntastic_warning_symbol = "\u26A0"       " warning sign (⚠ )
@@ -348,7 +355,11 @@ let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
+let g:syntastic_yaml_checkers=['yamllint']
+
 autocmd FileType rust let g:syntastic_rust_checkers = ['cargo']
+
+" let g:syntastic_rst_checkers = ['sphinx']
 
 map ,m :SyntasticToggleMode<CR>
 
@@ -421,6 +432,8 @@ augroup END
 "
 autocmd BufEnter * EnableStripWhitespaceOnSave
 let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 
 "------------------------------------------------------------
 " vim-jsdoc
@@ -449,6 +462,8 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:snips_author="boblannon"
 
+autocmd FileType python :UltiSnipsAddFiletypes python.rst
+
 "---------
 " YouCompleteMe
 "
@@ -473,4 +488,46 @@ let g:racer_cmd = "$HOME/.cargo/bin/racer"
 "au FileType rust nmap gx <Plug>(rust-def-vertical)
 "au FileType rust nmap ,gd <Plug>(rust-doc)
 
+
+"------------------------------------------------------------
+" python black (psf/black)
+"
+autocmd BufWritePre *.py execute ':Black'
+
+
+
+"------------------------------------------------------------
+" yaml
+"
+autocmd FileType yaml set softtabstop=2
+autocmd FileType yaml set tabstop=2
+autocmd FileType yaml set shiftwidth=2
+
+
+"------------------------------------------------------------
+" groovy (and Jenkinsfile)
+"
+autocmd FileType groovy set softtabstop=2
+autocmd FileType groovy set tabstop=2
+autocmd FileType groovy set shiftwidth=2
+
+
+"------------------------------------------------------------
+" rst
+"
+au BufRead,BufNewFile *.rst setlocal textwidth=80
+
+
+"------------------------------------------------------------
+" vim-terraform
+"
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
+
+"------------------------------------------------------------
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
+
 set secure
+
