@@ -102,11 +102,17 @@ if [ -t 1 ]; then
 fi
 
 ## editor
-export EDITOR="vim"
-
 if [ -n "$TMUX" ]; then
     alias vim="TERM=screen-256color vim"
 fi
+
+if type nvim > /dev/null 2>&1; then
+    alias vim='nvim'
+    export EDITOR='nvim'
+else
+    export EDITOR='vim'
+fi
+
 
 ## apache-spark
 export SPARK_HOME=/usr/local/Cellar/apache-spark/2.1.0/libexec
