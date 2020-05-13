@@ -16,16 +16,21 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" UI
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+
+" Search
+Plug 'vim-scripts/L9'
+Plug 'corntrace/bufexplorer'
+Plug 'ctrlpvim/ctrlp.vim'
+
 " general
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'godlygeek/tabular'
-Plug 'corntrace/bufexplorer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-characterize'
-Plug 'vim-scripts/L9'
-Plug 'ctrlpvim/ctrlp.vim'
 
 " colors
 Plug 'altercation/vim-colors-solarized'
