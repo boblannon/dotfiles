@@ -18,7 +18,6 @@ Plug 'airblade/vim-gitgutter'
 
 " UI
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
 
 " Search
 Plug 'vim-scripts/L9'
@@ -45,8 +44,6 @@ Plug 'vim-scripts/VimClojure'
 
 " python
 Plug 'hynek/vim-python-pep8-indent'
-Plug 'psf/black'
-Plug 'psf/black', { 'tag': '19.10b0' }
 
 " RST
 Plug 'mitsuhiko/vim-rst'
@@ -81,27 +78,6 @@ Plug 'juliosueiras/vim-terraform-completion'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " remember to :CocInstall coc-metals
 
-" snippets/completion
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-" Plug 'ervandew/supertab'
-
-" " YouCompleteMe
-" function! BuildYCM(info)
-"   if a:info.status == 'installed' || a:info.force
-"     !./install.sh
-"   endif
-" endfunction
-" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
-" Syntastic
-" function! Installjshint(info)
-"   if a:info.status == 'installed' || a:info.force
-"     !npm install -g jshint
-"   endif
-" endfunction
-" Plug 'scrooloose/syntastic', { 'do': function('Installjshint') }
-
 call plug#end()
 
 " Attempt to determine the type of a file based on its name and possibly its
@@ -131,6 +107,9 @@ colorscheme gruvbox
 if &diff
     colorscheme gruvbox
 endif
+
+" This maybe corrects the hover box color in coc.nvim?
+hi Quote ctermbg=109 guifg=#83a598
 
 "------------------------------------------------------------
 " Must have options {{{1
@@ -183,9 +162,6 @@ set nomodeline
 " change Vim's behaviour in ways which deviate from the true Vi way, but
 " which are considered to add usability. Which, if any, of these options to
 " use is very much a personal preference, but they are harmless.
-
-" add filename to statusline
-"set statusline+=%m%f
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -344,45 +320,6 @@ map <C-\> :NERDTreeToggle<CR>
 map <Leader>f :FufFile
 
 "------------------------------------------------------------
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 5
-
-let g:syntastic_sh_shellcheck_quiet_messages = {
-            \ "!level": "errors",
-            \ "type": "style" }
-
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
-let g:syntastic_javascript_eslint_quiet_messages={
-            \ "!level": "errors"}
-"let g:syntastic_python_flake8_args='--ignore=C901'
-
-let g:syntastic_error_symbol = "\u2717"         " ballot x ( ✗ )
-let g:syntastic_warning_symbol = "\u26A0"       " warning sign (⚠ )
-let g:syntastic_style_error_symbol = "\u2691"   " black flag (⚑ )
-let g:syntastic_style_warning_symbol = "\u2690" " white flag (⚐ )
-
-let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-
-let g:syntastic_yaml_checkers=['yamllint']
-
-autocmd FileType rust let g:syntastic_rust_checkers = ['cargo']
-
-" let g:syntastic_rst_checkers = ['sphinx']
-
-map ,m :SyntasticToggleMode<CR>
-
-"------------------------------------------------------------
 " fixmyjs
 let g:fixmyjs_engine = 'eslint'
 let g:fixmyjs_use_local = 1
@@ -438,12 +375,12 @@ let g:vmt_auto_update_on_save = 0
 let g:vim_json_syntax_conceal = 0
 augroup json_autocmd
   autocmd!
-  autocmd FileType json set autoindent
-  autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=78 shiftwidth=2
-  autocmd FileType json set softtabstop=2 tabstop=4
-  autocmd FileType json set expandtab
-  autocmd FileType json set foldmethod=syntax
+  autocmd FileType json setlocal autoindent
+  autocmd FileType json setlocal formatoptions=tcq2l
+  autocmd FileType json setlocal textwidth=78 shiftwidth=2
+  autocmd FileType json setlocal softtabstop=2 tabstop=4
+  autocmd FileType json setlocal expandtab
+  autocmd FileType json setlocal foldmethod=syntax
   autocmd FileType json syntax match Comment +\/\/.\+$+
 augroup END
 
@@ -467,40 +404,6 @@ autocmd FileType javascript map ,d :JsDoc<CR>
 
 
 "------------------------------------------------------------
-" supertab
-"
-"" make YCM compatible with UltiSnips (using supertab)
-"let g:SuperTabDefaultCompletionType = '<C-n>'
-
-""------------------------------------------------------------
-"" ultisnips
-""
-"let g:UltiSnipsUsePythonVersion = 3
-
-"" make YCM compatible with UltiSnips (using supertab)
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"let g:snips_author="boblannon"
-
-"autocmd FileType python :UltiSnipsAddFiletypes python.rst
-
-"---------
-" YouCompleteMe
-"
-
-" let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_register_as_syntastic_checker = 1 "default 1
-" let g:Show_diagnostics_ui = 1 "default 1
-" let g:ycm_global_ycm_extra_conf = '~/.global_ycm_extra_conf.py'
-" " make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:ycm_autoclose_preview_window_after_completion = 1
-
-" nnoremap <Leader>] :YcmCompleter GoTo<CR>
-
-"------------------------------------------------------------
 " vim-racer
 "
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
@@ -511,26 +414,19 @@ let g:racer_cmd = "$HOME/.cargo/bin/racer"
 
 
 "------------------------------------------------------------
-" python black (psf/black)
-"
-autocmd BufWritePre *.py execute ':Black'
-
-
-
-"------------------------------------------------------------
 " yaml
 "
-autocmd FileType yaml set softtabstop=2
-autocmd FileType yaml set tabstop=2
-autocmd FileType yaml set shiftwidth=2
+autocmd FileType yaml setlocal softtabstop=2
+autocmd FileType yaml setlocal tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2
 
 
 "------------------------------------------------------------
 " groovy (and Jenkinsfile)
 "
-autocmd FileType groovy set softtabstop=2
-autocmd FileType groovy set tabstop=2
-autocmd FileType groovy set shiftwidth=2
+autocmd FileType groovy setlocal softtabstop=2
+autocmd FileType groovy setlocal tabstop=2
+autocmd FileType groovy setlocal shiftwidth=2
 
 
 "------------------------------------------------------------
@@ -572,7 +468,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -601,6 +497,9 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -672,7 +571,17 @@ nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 
-set statusline^=%{coc#status()}
+set signcolumn=auto:2
+
+set statusline=%f\                                  " tail of the filename with space after
+set statusline+=%m                                  " modified flag
+set statusline+=%r                                  " read only flag
+set statusline+=%h\                                 " help flag
+set statusline+=%=                                  " left/right separator
+set statusline+=%{coc#status()}
+set statusline+=[c:%c]                         " current column
+set statusline+=[l:%l]                           " current line
+set statusline+=[%p%%]                              " percentage through file
 
 set secure
 
