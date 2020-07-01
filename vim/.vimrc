@@ -280,8 +280,8 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 "autocmd FileType python map ,8 :call Flake8()<CR>
 
-map <C-Up> :tabn<CR>
-map <C-Down> :tabp<CR>
+map <C-Right> :tabn<CR>
+map <C-Left> :tabp<CR>
 map ,b :BufExplorer<CR>
 map ,s :BufExplorerHorizontalSplit<CR>
 map ,v :BufExplorerVerticalSplit<CR>
