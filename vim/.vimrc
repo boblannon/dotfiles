@@ -20,7 +20,7 @@ Plug 'scrooloose/nerdtree'
 
 " Search
 Plug 'vim-scripts/L9'
-Plug 'corntrace/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'ctrlpvim/ctrlp.vim'
 
 " general
@@ -42,21 +42,26 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'vim-scripts/VimClojure'
 
 " python
-Plug 'hynek/vim-python-pep8-indent'
+"Plug 'hynek/vim-python-pep8-indent'
+Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'vim-python/python-syntax'
+Plug 'tmhedberg/SimpylFold'
 
 " RST
-Plug 'mitsuhiko/vim-rst'
+" Plug 'mitsuhiko/vim-rst'
 Plug 'nvie/vim-rst-tables'
 
 " javascript/node
 Plug 'pangloss/vim-javascript'
 Plug 'ruanyl/vim-fixmyjs'
-Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 Plug 'posva/vim-vue'
 
 " text
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Chiel92/vim-autoformat'
 Plug 'reedes/vim-pencil'
 
 " json
@@ -71,11 +76,41 @@ Plug 'cespare/vim-toml'
 
 " terraform
 Plug 'hashivim/vim-terraform'
-Plug 'juliosueiras/vim-terraform-completion'
+" Plug 'juliosueiras/vim-terraform-completion'
 
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " remember to :CocInstall coc-metals
+"   coc-metals
+"   coc-sqlfluff
+"   coc-html
+"   coc-eslint
+"   coc-snippets
+"   coc-groovy
+"   coc-json
+"   coc-python
+"   coc-sh
+"   coc-tsserver
+
+
+" sql
+Plug 'lifepillar/pgsql.vim'
+
+
+" CSV
+Plug 'mechatroner/rainbow_csv'
+
+
+" Misc
+Plug 'mileszs/ack.vim'
+
+
+" jinja
+Plug 'glench/vim-jinja2-syntax'
+
+
+" YAML
+Plug 'pedrohdz/vim-yaml-folds'
 
 call plug#end()
 
@@ -205,7 +240,7 @@ set mouse=a
 "set cmdheight=2
 
 " Display line numbers on the left
-set number
+" set number
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
@@ -213,6 +248,15 @@ set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F9>
 
+"
+" Line numbers
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 "------------------------------------------------------------
 " Indentation options {{{1
@@ -257,14 +301,12 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 map <C-Right> :tabn<CR>
 map <C-Left> :tabp<CR>
-map ,b :BufExplorer<CR>
-map ,s :BufExplorerHorizontalSplit<CR>
-map ,v :BufExplorerVerticalSplit<CR>
+map <Leader>s :split<CR>
+map <Leader>v :vsplit<CR>
 " map ,v :e ~/.vimrc<CR>
 nmap ,V :source ~/.vimrc<CR>
-map ,o o<Esc>
-map ,O O<Esc>
-map ,p <Esc>:set paste!<CR>
+nmap ,p <Esc>:set paste!<CR>
+nmap ,c :w !pbcopy<CR><CR>
 map [l :lprevious<CR>
 map ]l :lnext<CR>
 map [L :lfirst<CR>
@@ -281,6 +323,17 @@ set backupdir=~/.vimbackup
 set directory=~/.vimswap
 
 set foldlevelstart=20
+
+
+"------------------------------------------------------------
+" BufExplorer
+"
+map ,b :BufExplorer<CR>
+map ,s :BufExplorerHorizontalSplit<CR>
+map ,v :BufExplorerVerticalSplit<CR>
+let g:bufExplorerShowRelativePath=1
+let g:bufExplorerShowTabBuffer=1
+let g:bufExplorerFindActive=0
 
 "------------------------------------------------------------
 " vim-javascript
@@ -364,6 +417,14 @@ augroup END
 " set foldenable
 
 "------------------------------------------------------------
+" vim-rst-tables
+"
+" these are configured by default, but if you want to change them, uncomment
+" and edit:
+" noremap <silent> <leader><leader>c :call ReformatTable()<CR>
+" noremap <silent> <leader><leader>f :call ReflowTable()<CR>
+
+"------------------------------------------------------------
 " vim-markdown-toc
 "
 "
@@ -377,7 +438,7 @@ augroup json_autocmd
   autocmd FileType json setlocal autoindent
   autocmd FileType json setlocal formatoptions=tcq2l
   autocmd FileType json setlocal textwidth=78 shiftwidth=2
-  autocmd FileType json setlocal softtabstop=2 tabstop=4
+  autocmd FileType json setlocal softtabstop=2 tabstop=2
   autocmd FileType json setlocal expandtab
   autocmd FileType json setlocal foldmethod=syntax
   autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -426,6 +487,7 @@ autocmd FileType yaml setlocal shiftwidth=2
 autocmd FileType groovy setlocal softtabstop=2
 autocmd FileType groovy setlocal tabstop=2
 autocmd FileType groovy setlocal shiftwidth=2
+autocmd FileType groovy setlocal nofixeol
 
 
 "------------------------------------------------------------
@@ -438,12 +500,42 @@ au BufRead,BufNewFile *.rst setlocal textwidth=80
 " vim-terraform
 "
 let g:terraform_align=1
-let g:terraform_fold_sections=1
-let g:terraform_fmt_on_save=1
+"let g:terraform_fold_sections=1
+"let g:terraform_fmt_on_save=1
+
+"------------------------------------------------------------
+" vim-commentary
+autocmd FileType sql setlocal commentstring=--\ %s
 
 "------------------------------------------------------------
 " Configuration for vim-scala
 au BufNewFile,BufRead *.sc	setf scala
+
+
+
+" rainbow-csv
+"
+au BufNewFile,BufRead *.csv.txt setf csv
+
+
+"------------------------------------------------------------
+" pgsql.vim
+let g:sql_type_default = 'pgsql'
+let g:pgsql_pl = ['python']
+
+
+"------------------------------------------------------------
+" vim-python/python-syntax
+let g:python_highlight_all = 1
+let g:python_highlight_func_calls = 0
+
+"------------------------------------------------------------
+" tmhedberg/SimpylFold
+
+"------------------------------------------------------------
+" ctrlp
+let g:ctrlp_by_filename = 1
+let g:ctrlp_custom_ignore = '\v([\/]\.(git|hg|svn)|dbt/target)$'
 
 "------------------------------------------------------------
 " Suggested configuration for coc.nvim
@@ -479,6 +571,8 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+nmap <silent> gs :call CocAction('jumpDefinition', 'split')<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -570,6 +664,12 @@ nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 
+"------------------------------------------------------------
+" coc-sqlfluff
+autocmd FileType sql setlocal nofixeol
+
+
+
 set signcolumn=auto:2
 
 set statusline=%f\                                  " tail of the filename with space after
@@ -583,4 +683,3 @@ set statusline+=[l:%l]                           " current line
 set statusline+=[%p%%]                              " percentage through file
 
 set secure
-

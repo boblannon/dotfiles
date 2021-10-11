@@ -26,6 +26,8 @@ alias pyserve='python -m http.server '
 
 alias openports='sudo lsof -i -n -P '
 
+# alias openfiles="lsof | awk '{ print \$2 \$1; }' | sort -rn | uniq -c | sort -rn | head -20"
+
 alias seba='source ./env/bin/activate '
 alias svba='source ./venv/bin/activate '
 
