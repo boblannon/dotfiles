@@ -216,7 +216,7 @@ fi
 
 # rust
 if [ -d "$HOME/.cargo/bin" ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
+    prependToPath "${HOME}/.cargo/bin"
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
@@ -246,22 +246,37 @@ function irssi_repair() {
     irssi_nickpane
 }
 
-export PATH="$HOME/bin:$PATH"
+test -d "${HOME}/bin" && prependToPath "${HOME}/bin"
 
 ## ruby
-# export PATH=/usr/local/opt/ruby/bin:$PATH
+# prependToPath "/usr/local/opt/ruby/bin"
 
 ### rbenv
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
+# prependToPath "$HOME/.rbenv/bin"
+# eval "$(rbenv init -)"
+
+function jqcolor() {
+    jq -C . | less -R
+}
+
+# Python
+
+# Add user base binary directory
+# see: https://docs.python-guide.org/dev/virtualenvs/#installing-pipenv
+appendToPath "$(python -m site --user-base)/bin"
+
+# TeX
+if [ "$(uname)" == "Darwin" ]; then
+    test -d "/Library/TeX/texbin" && appendToPath "/Library/TeX/texbin"
+fi
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 ### rvm
 unset GEM_HOME
 if [ -s "$HOME/.rvm/scripts/rvm" ]; then
-    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
     source $HOME/.rvm/scripts/rvm
 fi
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
