@@ -1,7 +1,73 @@
 export PROMPT_COMMAND=""
 
+checkPath () {
+    case ":$PATH:" in
+        *":$1:"*) return 1;;
+    esac
+    return 0;
+}
+
+# Prepend to $PATH
+prependToPath () {
+    for a; do
+        checkPath $a
+        if [ $? -eq 0 ]; then
+            local new_path="${a}:${PATH}"
+            export PATH=$new_path
+        fi
+    done
+}
+
+# Append to $PATH
+appendToPath () {
+    for a; do
+        checkPath $a
+        if [ $? -eq 0 ]; then
+            local new_path=$PATH:$a
+            export PATH=$new_path
+        fi
+    done
+}
+
+
+# MacOS specific stuff
+if [ "$(uname)" == "Darwin" ]; then
+    # I'll migrate when I'm good and ready, thanks
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+
+    # Ensure user-installed binaries take precedence
+    prependToPath "/usr/local/bin"
+    prependToPath "/usr/local/sbin"
+    prependToPath "/usr/local/opt/python/libexec/bin"
+
+    # Set architecture flags
+    export ARCHFLAGS="-arch x86_64"
+
+    # Compiler flags
+    export LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib -L/usr/local/opt/icu4c/lib"
+    export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+
+    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+    # init pyenv
+    if command -v pyenv 1>/dev/null 2>&1; then
+      export PYENV_ROOT="$HOME/.pyenv"
+      export PATH="$PYENV_ROOT/bin:$PATH"
+      eval "$(pyenv init --path)"
+    fi
+
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+
+    unset JAVA_HOME
+    # export JAVA_HOME=$(/usr/libexec/java_home -v "1.8.0_251")
+
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+fi
+
 ## add my own scripts dir
-export PATH="$PATH:$HOME/scripts"
+test -d "${HOME}/scripts" && appendToPath "${HOME}/scripts"
 
 ### custom tab title
 function tabtitle(){
@@ -19,9 +85,6 @@ function tabtitle(){
         echo "$REMOTE_NAME"
     fi
 }
-#if [ $ITERM_SESSION_ID ]; then
-#    export PROMPT_COMMAND='echo -ne "\033];$(tabtitle)${PWD##*/}\007"; ':"$PROMPT_COMMAND";
-#fi
 
 function ms() {
     export CURRENT_REMOTE_NAME="$1"
@@ -47,11 +110,11 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-if [ "$(uname)" == "Darwin" ]; then
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-      . $(brew --prefix)/etc/bash_completion
-    fi
+## bash_secrets
+if [ -f ~/.bash_secrets ]; then
+  . ~/.bash_secrets
 fi
+
 
 ## bash-git-prompt
 GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
@@ -107,7 +170,7 @@ if [ -n "$TMUX" ]; then
 fi
 
 if type nvim > /dev/null 2>&1; then
-    alias vim='nvim'
+    alias vim='TERM=screen-256color nvim'
     export EDITOR='nvim'
 else
     export EDITOR='vim'
@@ -131,9 +194,9 @@ if [ -f /usr/local/opt/nvm/nvm.sh ]; then
     . "/usr/local/opt/nvm/nvm.sh"
 else
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ## ack colorizing
 ack_color() {
