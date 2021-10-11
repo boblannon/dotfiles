@@ -39,3 +39,9 @@ env
 env[0-9]
 .ipynb_checkpoints
 *.py[co]
+
+# scala
+metals.sbt
+
+# clamav file that gets deleted by sophos
+clamav/tests/test1.txt
