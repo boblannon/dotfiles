@@ -129,6 +129,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Hopefully we never get here
 fi
 
+## git
+# this works with aliases for `git files` and `git stat` in ~/.gitconfig
+export GIT_REVIEW_BASE=main
+
 ## rbenv
 #eval "$(rbenv init -)"
 
