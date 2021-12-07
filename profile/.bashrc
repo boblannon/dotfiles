@@ -66,6 +66,12 @@ if [ "$(uname)" == "Darwin" ]; then
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 fi
 
+# Linux specific stuff
+if [ "$(uname)" == "Linux" ]; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
 ## add my own scripts dir
 test -d "${HOME}/scripts" && appendToPath "${HOME}/scripts"
 
