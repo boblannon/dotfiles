@@ -6,7 +6,10 @@ apt-get update -y \
 
 apt-get -y -q install build-essential cmake
 apt-get -y -q install python3-pip python3-venv
-apt-get -y -q install ncurses-term bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu postgresql-client neovim python-neovim python3-neovim
+apt-get -y -q install ncurses-term bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu postgresql-client neovim python-neovim python3-neovim xclip
+
+curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+apt-get install -y nodejs
 
 # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 # echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
