@@ -15,7 +15,6 @@ function move_to_old(){
     fi
 }
 
-
 move_to_old $HOME/.bashrc
 ln -s $HOME/cfg/dotfiles/profile/.bashrc $HOME/.bashrc
 
@@ -51,6 +50,11 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 move_to_old $HOME/.vimrc
 ln -s $HOME/cfg/dotfiles/vim/.vimrc $HOME/.vimrc
 # ln -s $HOME/cfg/dotfiles/vim/.global_ycm_extra_conf.py $HOME/.global_ycm_extra_conf.py
+
+mkdir -p $HOME/.config/nvim
+move_to_old $HOME/.config/nvim/init.vim
+ln -s $HOME/cfg/dotfiles/vim/init.vim $HOME/.config/nvim/init.vim 
+
 
 nvim +PlugInstall +qall
 
