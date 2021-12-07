@@ -6,7 +6,39 @@ apt-get update -y \
 
 apt-get -y -q install build-essential cmake
 apt-get -y -q install python3-pip python3-venv
-apt-get -y -q install ncurses-term bash-completion wget ack-grep htop tree vim-nox ruby-dev rake memcached libevent-dev libncurses5-dev libncursesw5-dev ncdu postgresql-client neovim python-neovim python3-neovim xclip
+apt-get -y -q install \
+    ack-grep \
+    bash-completion \
+    curl \
+    htop \
+    libbz2-dev \
+    libevent-dev \
+    libffi-dev \
+    liblzma-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    llvm \
+    memcached \
+    ncdu \
+    ncurses-term \
+    neovim \
+    postgresql-client \
+    python3-neovim \
+    rake \
+    ruby-dev \
+    tk-dev \
+    tree \
+    vim-nox \
+    wget \
+    xclip \
+    xz-utils \
+    zlib1g-dev
+
 
 curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 apt-get install -y nodejs
@@ -20,6 +52,9 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 rm -rf aws
+
+# pyenv
+curl https://pyenv.run | bash
 
 # yarn global add jshint
 # yarn global add jsonlint

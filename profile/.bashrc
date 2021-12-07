@@ -70,6 +70,10 @@ fi
 if [ "$(uname)" == "Linux" ]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
+
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
 fi
 
 ## add my own scripts dir
@@ -224,6 +228,11 @@ fi
 if [ -d "$HOME/.cargo/bin" ]; then
     prependToPath "${HOME}/.cargo/bin"
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
+
+# poetry
+if [ -d "$HOME/.poetry/bin" ]; then
+    prependToPath "${HOME}/.poetry/bin"
 fi
 
 ## irssi
