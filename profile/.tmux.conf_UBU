@@ -1,5 +1,7 @@
-#new-session
-set -g default-command "${SHELL}"
+set-option -g default-shell $SHELL
+
+set-option -g set-titles on
+set-option -g set-titles-string '#W (local)'
 
 # remap prefix to Control + a
 set -g prefix C-a
@@ -15,7 +17,6 @@ unbind ^A
 bind ^A select-pane -t :.+
 
 # mouse option (simplified as of tmux 2.1)
-#set-window-option -g mode-mouse copy-mode
 set -g mouse on
 
 # history
@@ -24,10 +25,25 @@ set -g history-limit 30000
 # vi in copy mode
 setw -g mode-keys vi
 setw -g monitor-activity on
+setw -g monitor-silence 0
 
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
+# address issue with escape key being delayed in neovim
+# https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
+set -sg escape-time 10
+
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
 
 # send the right keys for home/end
 #bind -n End send-key C-e
 #bind -n Home send-key C-a
+
+# toggle send command to all panes
+bind -n C-x setw synchronize-panes
+
+set -g status-bg blue
+
+# Active window title color
+setw -g window-status-current-style fg=black,bg=white

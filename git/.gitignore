@@ -45,3 +45,6 @@ metals.sbt
 
 # clamav file that gets deleted by sophos
 clamav/tests/test1.txt
+
+typings
+.mypy_cache

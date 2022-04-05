@@ -42,8 +42,8 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'vim-scripts/VimClojure'
 
 " python
-"Plug 'hynek/vim-python-pep8-indent'
-Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'hynek/vim-python-pep8-indent'
+" Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-python/python-syntax'
 Plug 'tmhedberg/SimpylFold'
 
@@ -125,10 +125,15 @@ syntax enable
 
 " Background
 set background=dark
+" set background=light
 
 "------------------------------------------------------------
 " Colorschemes
 "
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+
 " Solarized
 " let g:solarized_termtrans = 1
 " colorscheme solarized
@@ -241,6 +246,9 @@ set mouse=a
 
 " Display line numbers on the left
 " set number
+
+" diff views should split vertical by default
+set diffopt+=vertical
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
@@ -356,8 +364,8 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 
-" toggle with \
-map <C-\> :NERDTreeToggle<CR>
+" toggle with ctrl-t
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 "------------------------------------------------------------
 " CommandT
@@ -591,8 +599,17 @@ function! s:show_documentation()
   endif
 endfunction
 
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+" nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+" nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')

@@ -1,4 +1,5 @@
 export PROMPT_COMMAND=""
+export LESS=-Xr
 
 checkPath () {
     case ":$PATH:" in
@@ -71,9 +72,17 @@ if [ "$(uname)" == "Linux" ]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
 
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init --path)"
+    if [ -d "$HOME/.pyenv" ] ; then
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="$PYENV_ROOT/bin:$PATH"
+        if command -v pyenv 1>/dev/null 2>&1; then
+            eval "$(pyenv init --path)"
+        fi
+    fi
+
+    if [ -d "$HOME/.poetry" ] ; then
+        export PATH="$HOME/.poetry/bin:$PATH"
+    fi
 fi
 
 ## add my own scripts dir
@@ -183,7 +192,7 @@ if [ -n "$TMUX" ]; then
     alias vim="TERM=screen-256color vim"
 fi
 
-if type nvim > /dev/null 2>&1; then
+if command -v nvim 1> /dev/null 2>&1; then
     alias vim='TERM=screen-256color nvim'
     export EDITOR='nvim'
 else
@@ -209,6 +218,11 @@ if [ -f /usr/local/opt/nvm/nvm.sh ]; then
 else
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+## yarn
+if command -v yarn &>/dev/null; then
+    prependToPath "$(yarn global bin)"
 fi
 
 

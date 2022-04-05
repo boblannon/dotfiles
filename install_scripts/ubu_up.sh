@@ -10,6 +10,7 @@ apt-get -y -q install \
     ack-grep \
     bash-completion \
     curl \
+    fonts-inconsolata \
     htop \
     libbz2-dev \
     libevent-dev \
@@ -32,6 +33,7 @@ apt-get -y -q install \
     rake \
     ruby-dev \
     tk-dev \
+    tmux \
     tree \
     vim-nox \
     wget \
@@ -55,6 +57,9 @@ rm -rf aws
 
 # pyenv
 curl https://pyenv.run | bash
+
+# poetry
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 # yarn global add jshint
 # yarn global add jsonlint
