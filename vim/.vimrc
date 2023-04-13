@@ -103,6 +103,7 @@ Plug 'mechatroner/rainbow_csv'
 
 " Misc
 Plug 'mileszs/ack.vim'
+Plug 'nathanaelkane/vim-indent-guides'
 
 
 " jinja
@@ -111,6 +112,9 @@ Plug 'glench/vim-jinja2-syntax'
 
 " YAML
 Plug 'pedrohdz/vim-yaml-folds'
+
+" Pico-8
+Plug 'bakudankun/pico-8.vim'
 
 call plug#end()
 
@@ -363,6 +367,8 @@ let g:vim_markdown_folding_style_pythonic = 1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
+let NERDTreeDirArrowExpandable=""
+let NERDTreeDirArrowCollapsible=""
 
 " toggle with ctrl-t
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -384,7 +390,7 @@ map <Leader>f :FufFile
 let g:fixmyjs_engine = 'eslint'
 let g:fixmyjs_use_local = 1
 let g:fixmyjs_rc_filename = ['.eslintrc', '.eslintrc.js', '.eslintrc.json']
-autocmd FileType javascript map ,f :Fixmyjs<CR>
+" autocmd FileType javascript map ,f :Fixmyjs<CR>
 
 
 
@@ -531,6 +537,11 @@ au BufNewFile,BufRead *.csv.txt setf csv
 let g:sql_type_default = 'pgsql'
 let g:pgsql_pl = ['python']
 
+"------------------------------------------------------------
+" pico-8.vim
+" let g:pico8_config.pico8_path =
+
+
 
 "------------------------------------------------------------
 " vim-python/python-syntax
@@ -543,7 +554,12 @@ let g:python_highlight_func_calls = 0
 "------------------------------------------------------------
 " ctrlp
 let g:ctrlp_by_filename = 1
-let g:ctrlp_custom_ignore = '\v([\/]\.(git|hg|svn)|dbt/target)$'
+let g:ctrlp_custom_ignore = '\v([\/]\.(git|hg|svn)|*/target/*|venv)$'
+
+"------------------------------------------------------------
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+
 
 "------------------------------------------------------------
 " Suggested configuration for coc.nvim
@@ -640,6 +656,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+nmap <leader>f :Format<CR>
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)

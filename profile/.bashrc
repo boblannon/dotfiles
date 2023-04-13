@@ -30,6 +30,8 @@ appendToPath () {
     done
 }
 
+export PATH="$HOME/.pyenv/bin:$PATH"
+
 
 # MacOS specific stuff
 if [ "$(uname)" == "Darwin" ]; then
@@ -44,27 +46,34 @@ if [ "$(uname)" == "Darwin" ]; then
     # Set architecture flags
     export ARCHFLAGS="-arch x86_64"
 
-    # Compiler flags
-    export LDFLAGS="-I/usr/local/opt/openssl/include -L/usr/local/opt/openssl/lib -L/usr/local/opt/icu4c/lib"
-    export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+    # assumes you install another brew per http://sixty-north.com/blog/pyenv-apple-silicon.html
+    alias brew86="arch -x86_64 /usr/local/bin/brew"
+    alias brew64="arch -arm64 /usr/local/bin/brew"
+    alias pyenv86="arch -x86_64 pyenv"
 
-    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+    BREW86_PREFIX="/usr/local/opt"
+
+    # Compiler flags
+    export LDFLAGS="-I$BREW86_PREFIX/openssl@3/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -L$BREW86_PREFIX/lib -L$BREW86_PREFIX/lib"
+    export CFLAGS="-I$BREW86_PREFIX/include"
+    export CPPFLAGS="-I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include -L$BREW86_PREFIX/lib -L$BREW86_PREFIX/lib -I$BREW86_PREFIX/include"
 
     # init pyenv
     if command -v pyenv 1>/dev/null 2>&1; then
-      export PYENV_ROOT="$HOME/.pyenv"
+      # export PYENV_ROOT="$HOME/.pyenv"
       export PATH="$PYENV_ROOT/bin:$PATH"
       eval "$(pyenv init --path)"
     fi
 
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        . $(brew --prefix)/etc/bash_completion
+    if [ -f $(brew86 --prefix)/etc/bash_completion ]; then
+        . $(brew86 --prefix)/etc/bash_completion
     fi
 
     unset JAVA_HOME
     # export JAVA_HOME=$(/usr/libexec/java_home -v "1.8.0_251")
 
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home
+
 fi
 
 # Linux specific stuff
@@ -138,8 +147,8 @@ fi
 ## bash-git-prompt
 GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
 if [ "$(uname)" == "Darwin" ]; then
-    if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-        source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+    if [ -f "$(brew86 --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+        source "$(brew86 --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
     fi
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # GIT_PROMPT_ONLY_IN_REPO=1
@@ -201,15 +210,15 @@ fi
 
 
 ## apache-spark
-export SPARK_HOME=/usr/local/Cellar/apache-spark/2.1.0/libexec
-export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
+# export SPARK_HOME=/usr/local/Cellar/apache-spark/2.1.0/libexec
+# export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
 
 ## git
 #source ~/.git-completion.bash
 
 ## transfer.sh
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
-    tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+# transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
+#     tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
 
 ## nvm
 export NVM_DIR="$HOME/.nvm"
@@ -305,10 +314,10 @@ export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 ### rvm
-unset GEM_HOME
-if [ -s "$HOME/.rvm/scripts/rvm" ]; then
-    source $HOME/.rvm/scripts/rvm
-fi
+# unset GEM_HOME
+# if [ -s "$HOME/.rvm/scripts/rvm" ]; then
+#     source $HOME/.rvm/scripts/rvm
+# fi
 
 if [ -d "$HOME/.perl5/bin" ]; then
     prependToPath "$HOME/perl5/bin"
