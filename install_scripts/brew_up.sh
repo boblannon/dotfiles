@@ -71,12 +71,12 @@ packages=(
 
 for p in "${packages[@]}"
 do
-  brew install $p
+  arch -x86_64 /usr/local/bin/brew install $p
 done
 
-brew install gnu-sed
-brew install grep
-brew install ripgrep
+arch -x86_64 /usr/local/bin/brew install gnu-sed
+arch -x86_64 /usr/local/bin/brew install grep
+arch -x86_64 /usr/local/bin/brew install ripgrep
 
 mkdir $HOME/.nvm
 
