@@ -88,10 +88,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "   coc-snippets
 "   coc-groovy
 "   coc-json
-"   coc-python
 "   coc-sh
 "   coc-tsserver
-
+"   coc-diagnostic
+"   coc-jedi
 
 " sql
 Plug 'lifepillar/pgsql.vim'
