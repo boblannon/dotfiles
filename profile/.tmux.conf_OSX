@@ -41,6 +41,7 @@ bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
 bind -n C-x setw synchronize-panes
 
 set -g status-bg blue
+set -g status-right '#(~/scripts/tmux_battery_charge_indicator.sh)'
 
 # Active window title color
 setw -g window-status-current-style fg=black,bg=white

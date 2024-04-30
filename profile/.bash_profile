@@ -19,3 +19,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # added by Snowflake SnowSQL installer v1.2
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
+# added by Snowflake SnowCD installer
+export PATH=/opt/snowflake/snowcd:$PATH

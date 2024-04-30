@@ -554,12 +554,22 @@ let g:python_highlight_func_calls = 0
 "------------------------------------------------------------
 " ctrlp
 let g:ctrlp_by_filename = 1
-let g:ctrlp_custom_ignore = '\v([\/]\.(git|hg|svn)|*/target/*|venv)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](\.(git|hg|svn)|target|latest_target|venv)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+  \ }
 
 "------------------------------------------------------------
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 
+
+"------------------------------------------------------------
+" xml
+augroup XML
+    autocmd!
+    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+augroup END
 
 "------------------------------------------------------------
 " Suggested configuration for coc.nvim
@@ -674,7 +684,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
 
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>CocDiagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
@@ -725,3 +735,5 @@ set statusline+=[l:%l]                           " current line
 set statusline+=[%p%%]                              " percentage through file
 
 set secure
+
+set maxmempattern=5000

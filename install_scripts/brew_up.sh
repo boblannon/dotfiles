@@ -2,6 +2,7 @@
 
 set -ex
 
+
 # this isn't found for some reason but i don't know why
 #brew cask install font-inconsolata
 #brew cask install keybase
