@@ -32,7 +32,7 @@ fi
 move_to_old $HOME/.gitignore
 ln -s $HOME/cfg/dotfiles/git/.gitignore $HOME/.gitignore
 
-git config --global user.email "robert.lannon@factorypal.com"
+git config --global user.email "blannon@gmail.com"
 git config --global user.name "Bob Lannon"
 git config --global push.default simple
 git config --global core.excludesfile $HOME/.gitignore
