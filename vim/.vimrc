@@ -88,10 +88,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "   coc-snippets
 "   coc-groovy
 "   coc-json
-"   coc-python
 "   coc-sh
 "   coc-tsserver
-
+"   coc-diagnostic
+"   coc-jedi
 
 " sql
 Plug 'lifepillar/pgsql.vim'
@@ -103,6 +103,7 @@ Plug 'mechatroner/rainbow_csv'
 
 " Misc
 Plug 'mileszs/ack.vim'
+Plug 'nathanaelkane/vim-indent-guides'
 
 
 " jinja
@@ -111,6 +112,9 @@ Plug 'glench/vim-jinja2-syntax'
 
 " YAML
 Plug 'pedrohdz/vim-yaml-folds'
+
+" Pico-8
+Plug 'bakudankun/pico-8.vim'
 
 call plug#end()
 
@@ -363,6 +367,8 @@ let g:vim_markdown_folding_style_pythonic = 1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
+let NERDTreeDirArrowExpandable=""
+let NERDTreeDirArrowCollapsible=""
 
 " toggle with ctrl-t
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -384,7 +390,7 @@ map <Leader>f :FufFile
 let g:fixmyjs_engine = 'eslint'
 let g:fixmyjs_use_local = 1
 let g:fixmyjs_rc_filename = ['.eslintrc', '.eslintrc.js', '.eslintrc.json']
-autocmd FileType javascript map ,f :Fixmyjs<CR>
+" autocmd FileType javascript map ,f :Fixmyjs<CR>
 
 
 
@@ -531,6 +537,11 @@ au BufNewFile,BufRead *.csv.txt setf csv
 let g:sql_type_default = 'pgsql'
 let g:pgsql_pl = ['python']
 
+"------------------------------------------------------------
+" pico-8.vim
+" let g:pico8_config.pico8_path =
+
+
 
 "------------------------------------------------------------
 " vim-python/python-syntax
@@ -543,7 +554,22 @@ let g:python_highlight_func_calls = 0
 "------------------------------------------------------------
 " ctrlp
 let g:ctrlp_by_filename = 1
-let g:ctrlp_custom_ignore = '\v([\/]\.(git|hg|svn)|dbt/target)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](\.(git|hg|svn)|target|latest_target|venv)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+  \ }
+
+"------------------------------------------------------------
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+
+
+"------------------------------------------------------------
+" xml
+augroup XML
+    autocmd!
+    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+augroup END
 
 "------------------------------------------------------------
 " Suggested configuration for coc.nvim
@@ -552,16 +578,24 @@ set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Used in the tab autocompletion for coc
-function! s:check_back_space() abort
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
@@ -640,6 +674,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+nmap <leader>f :Format<CR>
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -649,7 +684,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 nnoremap <leader>cl :<C-u>call CocActionAsync('codeLensAction')<CR>
 
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>CocDiagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
@@ -700,3 +735,5 @@ set statusline+=[l:%l]                           " current line
 set statusline+=[%p%%]                              " percentage through file
 
 set secure
+
+set maxmempattern=5000

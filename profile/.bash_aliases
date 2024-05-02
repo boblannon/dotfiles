@@ -42,3 +42,7 @@ alias dockerlogin='eval "$(aws ecr get-login --region us-east-1 --no-include-ema
 alias vimdiff='nvim -d '
 
 alias tfprint='pbpaste | python -c "import sys;print(eval(sys.stdin.read()))"'
+
+alias terd='awsudo -u dev terraform -chdir=environments/dev'
+alias ters='awsudo -u staging terraform -chdir=environments/staging'
+alias terp='awsudo -u production terraform -chdir=environments/production'

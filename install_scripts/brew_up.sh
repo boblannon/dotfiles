@@ -2,13 +2,14 @@
 
 set -ex
 
+
 # this isn't found for some reason but i don't know why
 #brew cask install font-inconsolata
-brew cask install keybase
+#brew cask install keybase
 
 # needed for elasticsearch
 #brew cask install java
-brew cask install homebrew/cask-versions/adoptopenjdk8
+#brew cask install homebrew/cask-versions/adoptopenjdk8
 
 packages=(
   # utils
@@ -35,28 +36,28 @@ packages=(
 
 
   # databases
-  elasticsearch
-  redis
+  # elasticsearch
+  # redis
   postgresql
-  memcached
-  mysql
+  # memcached
+  # mysql
 
   # python
   python
 
   # node
-  v8
-  node
-  nvm
-  yarn
+  #v8
+  #node
+  #nvm
+  #yarn
 
   # spark
 
-  apache-spark
+  #apache-spark
 
   # ruby
-  ruby
-  ruby-build
+  #ruby
+  #ruby-build
 
   # git
   git
@@ -71,14 +72,14 @@ packages=(
 
 for p in "${packages[@]}"
 do
-  brew install $p
+  arch -x86_64 /usr/local/bin/brew install $p
 done
 
-brew install gnu-sed
-brew install grep
-brew install ripgrep
+arch -x86_64 /usr/local/bin/brew install gnu-sed
+arch -x86_64 /usr/local/bin/brew install grep
+arch -x86_64 /usr/local/bin/brew install ripgrep
 
 mkdir $HOME/.nvm
 
-yarn global add jshint
-yarn global add jsonlint
+#yarn global add jshint
+#yarn global add jsonlint

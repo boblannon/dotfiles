@@ -37,6 +37,7 @@ node_modules
 # python
 env
 env[0-9]
+venv
 .ipynb_checkpoints
 *.py[co]
 
@@ -48,3 +49,5 @@ clamav/tests/test1.txt
 
 typings
 .mypy_cache
+.flyway/snowflake/flyway.*
+.airflow/.env.*

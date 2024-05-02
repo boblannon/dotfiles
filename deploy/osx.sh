@@ -32,7 +32,7 @@ fi
 move_to_old $HOME/.gitignore
 ln -s $HOME/cfg/dotfiles/git/.gitignore $HOME/.gitignore
 
-git config --global user.email "blannon@gmail.com"
+git config --global user.email "robert.lannon@factorypal.com"
 git config --global user.name "Bob Lannon"
 git config --global push.default simple
 git config --global core.excludesfile $HOME/.gitignore
@@ -48,7 +48,7 @@ move_to_old $HOME/.vimrc
 ln -s $HOME/cfg/dotfiles/vim/.vimrc $HOME/.vimrc
 ln -s $HOME/cfg/dotfiles/vim/.global_ycm_extra_conf.py $HOME/.global_ycm_extra_conf.py
 
-vim +PluginInstall +qall
+#vim +PluginInstall +qall
 
 if [ -d $HOME/.vim/bundle/command-t ]; then
     cd $HOME/.vim/bundle/command-t/
